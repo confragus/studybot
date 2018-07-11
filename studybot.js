@@ -228,9 +228,9 @@ request.onload = function () {
             health_bar(lives,lives-35);
             lives = lives-35;  
           };
-          current_qn += 1;
-          
+
           // show next question
+          current_qn += 1;
           stop_clock = 1;
           setTimeout(function(){
             if (lives <= 0){
@@ -238,7 +238,7 @@ request.onload = function () {
               alert("You have died. Your score is: " + score);
             } else {
               stop_clock = 0;
-              starttimer_break(0,5);
+              starttimer_break(0,2);
               setTimeout(function(){
               display(document.getElementById(current_qn));
               smoothScroll(document.getElementById(current_qn));
@@ -246,7 +246,7 @@ request.onload = function () {
               level = Math.floor(score/5);
               p_level.innerHTML = level;
               starttimer(0,saved_marks[current_qn]*(90-level*2));
-              }, 5000);
+              }, 2000);
             }
           } ,1000);
         };
@@ -291,7 +291,7 @@ request.onload = function () {
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   MathJax.Hub.Queue(function(){
     
-    document.getElementById('loading_message').innerHTML = 'Starting in 5 seconds';
+    document.getElementById('loading_message').innerHTML = 'get ready';
     starttimer_break(0,5);
     setTimeout(function(){
     document.getElementById('loading_message').innerHTML = 'studybot';

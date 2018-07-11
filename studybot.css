@@ -142,7 +142,7 @@ button {
 }
 .grid_nav {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 .grid_nav > div{
   color: white;
@@ -164,8 +164,8 @@ button {
 .foot_background {
 }
 .d_foot { 
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top:5px;
+  padding-bottom:5px;
   margin: 0 auto;
   background-color: #777;
   position: fixed;
@@ -191,7 +191,7 @@ button {
 }
 .foot_logo{
   margin: auto;
-  height: 50px;
+  height: 30px;
   vertical-align: middle;
 }
 .d_logo span {
@@ -204,18 +204,18 @@ button {
 
 /*Health Bar*/
 #myProgress {
-  width: 4em;
+  width: 3em;
   background-color: #777;
 }
 
 #myBar {
   width: 100%;
-  height: 50px;
+  height: 30px;
   background-color: #7e3538;
   text-align: left;
-  line-height: 50px;
+  line-height: 30px;
   color: white;
-  padding-left: 10px;
+  padding-left: 0px;
   /*border: 1px solid #222;*/
   border-radius: 3px;
 }
