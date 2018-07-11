@@ -290,17 +290,11 @@ request.onload = function () {
   // Start up
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   MathJax.Hub.Queue(function(){
-    
-    document.getElementById('loading_message').innerHTML = 'get ready';
-    starttimer_break(0,5);
-    setTimeout(function(){
-    document.getElementById('loading_message').innerHTML = 'studybot';
     hide(document.getElementById('load_icon'));
     display(document.getElementById(current_qn));
     smoothScroll(document.getElementById(current_qn));
     timer_count = 0;
     starttimer(0,saved_marks[current_qn]*(90-score));
-    }, 5000);
   });
 
 }
@@ -419,12 +413,12 @@ function health_bar(start,end) {
   function frame() {
     if (width > end) {
       width--; 
-      elem.style.width = width + '%'; 
+      // elem.style.width = width + '%'; 
       elem.innerHTML = width * 1;
     };
     if (width < end) {
       width++; 
-      elem.style.width = width + '%'; 
+      // elem.style.width = width + '%'; 
       elem.innerHTML = width * 1;
     };
   }
