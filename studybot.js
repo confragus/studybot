@@ -238,7 +238,6 @@ request.onload = function () {
               alert("You have died. Your score is: " + score);
             } else {
               stop_clock = 0;
-              starttimer_break(0,2);
               setTimeout(function(){
               display(document.getElementById(current_qn));
               smoothScroll(document.getElementById(current_qn));
@@ -409,7 +408,7 @@ function starttimer_break(mns,scs) {
 function health_bar(start,end) {
   var elem = document.getElementById("myBar");   
   var width = start;
-  var id = setInterval(frame, 10); 
+  var id = setInterval(frame, 30); 
   function frame() {
     if (width > end) {
       width--; 
