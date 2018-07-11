@@ -321,7 +321,6 @@ function show() {
   // showmns.innerHTML = pad2(m);
   // showscs.innerHTML = pad2(s);
   showscs.innerHTML = timer_count;
-  showscs.style.color = "#f8f8f2";
 };
 
 function timer() {
@@ -374,7 +373,6 @@ function show_break() {
     // showmns.innerHTML = pad2(m);
     // showscs.innerHTML = pad2(s);
     showscs.innerHTML = timer_count_break;
-    showscs.style.color = "#222";
   };
 
 function timer_break() {
