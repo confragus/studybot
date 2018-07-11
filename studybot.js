@@ -274,8 +274,8 @@ request.onload = function () {
       card.appendChild(p_Solution);
 
       // Hide answers
-      // hide(p_Answer);
-      // hide(p_Solution);
+      hide(p_Answer);
+      hide(p_Solution);
       hide(card);
 
       // Exclude and add track Id
