@@ -51,15 +51,15 @@
 <div class="foot_background">
   <div class="d_foot">
     <div class="grid_foot">
-      <div>HP:</div>
+      <div>Bank:</div>
       <div class="d_lives">
         <div id="myProgress">
           <div id="myBar"><span>100</span></div>
         </div>        
       </div>
       <div></div>
-      <div></div>
-      <div id="d_ready"></div>
+      <div>level: </div>
+      <div class="d_score"><span id="p_level">0</span></div>
       <div>score: </div>
       <div class="d_score"><span id="p_score">0</span></div>
     </div>
@@ -79,8 +79,27 @@
     <p class='center'>NSW HSC Mathematics General 2 Quiz</p>
     
     <button class="button" onclick="window.location.href='./quiz.html'">Start Quiz</button>
+    <button class="collapsible">Instructions</button>
+    <div class="content">
+      <ul>
+        <li>90 seconds per mark to answer each question</li>
+        <li>Correctly answered questions increase your score.</li>
+        <li>Level up occurs every 5 marks which reduces the time to answer per mark by 2 seconds.</li>
+        <li>Time bank starts at 100</li>
+        <li>Get as many marks as you can before the time runs out.</li>
+      </ul>
+    </div>
+
+    <button class="collapsible">Resources</button>
+    <div class="content">
+      <p>As per the HSC test guidelines</p>
+      <ul>
+        <li>NESA approved calculators may be used.</li>
+        <li>A formulae and data sheet is provided here.</li>
+      </ul>
+    </div>
+
     <button class="collapsible">Subjects</button>
-    
     <div class="content">
       <p>The questions contained in this quiz comes from past NSW Australia Higher School Certificate (HSC) examinations dated from 2000 to 2017.</p>
       <p>Only Mathematics General 2 questions are available for now. Please vote below for the next subject to be added.</p>
@@ -91,17 +110,7 @@
         <li>Other</li>
       </ul>
     </div>
-    <button class="collapsible">General Instructions</button>
-    <div class="content">
-      <p>As per the HSC test guidelines</p>
-      <ul>
-        <li>NESA approved calculators may be used</li>
-        <li>A formulae and data sheet is provided here</li>
-        <li>The quiz begins with 180 seconds.</li>
-        <li>For each question you answer correctly you gain 90 seconds per mark (as per the Mathematics General 2 HSC guidelines)</li>
-        <li>Gain as many marks as you can before the time runs out</li>
-      </ul>
-    </div>
+
     <button class="collapsible">Exam Muscles</button>
     <div class="content">
       <p>I was never the fastest learner nor the best at understanding school material. But I had one secret. I mastered examination technique.</p>

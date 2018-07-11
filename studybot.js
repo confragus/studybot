@@ -87,6 +87,7 @@ app.appendChild(container);
 var request = new XMLHttpRequest();
 
 const p_score = document.getElementById('p_score');
+const p_level = document.getElementById('p_level');
 
 // Open a new connection, using the GET request on the URL endpoint
 request.open('GET', 'https://empirestreet.com.au/questionlist', true);
@@ -198,7 +199,7 @@ request.onload = function () {
                                         parseFloat(question.Marks)/2 + 
                                         " Score! " + 
                                         -timer_count +
-                                        " seconds spent from health points."
+                                        " seconds spent from bank."
               card.style.backgroundColor = "#355d7e";
               score = score + parseFloat(question.Marks)/2;
               p_score.innerHTML = score;
@@ -207,7 +208,7 @@ request.onload = function () {
                                         parseFloat(question.Marks) + 
                                         " Score! " + 
                                         timer_count +
-                                        " health points gained.";
+                                        " added to the time bank.";
               card.style.backgroundColor = "#357e7b";
               health_bar(lives,lives+timer_count)
               lives = lives+timer_count;
@@ -217,11 +218,11 @@ request.onload = function () {
           } else {
             if (timer_count < 0){
               button_submit.innerHTML = "Incorrect! " + 
+                                        " 35 seconds lost from bank. You spent an additional" +
                                         -timer_count +
-                                        " seconds spent from health points. " +
-                                        "Additional 35 health points lost.";
+                                        " seconds. ";
             } else {
-              button_submit.innerHTML = "Incorrect! 35 health points lost.";
+              button_submit.innerHTML = "Incorrect! 35 seconds lost from bank.";
             }
             card.style.backgroundColor = "#7e3538";
             health_bar(lives,lives-35);
@@ -242,7 +243,9 @@ request.onload = function () {
               display(document.getElementById(current_qn));
               smoothScroll(document.getElementById(current_qn));
               timer_count = 0;
-              starttimer(0,saved_marks[current_qn]*(90-score));
+              level = Math.floor(score/5);
+              p_level.innerHTML = level;
+              starttimer(0,saved_marks[current_qn]*(90-level*2));
               }, 5000);
             }
           } ,1000);
@@ -271,8 +274,8 @@ request.onload = function () {
       card.appendChild(p_Solution);
 
       // Hide answers
-      hide(p_Answer);
-      hide(p_Solution);
+      // hide(p_Answer);
+      // hide(p_Solution);
       hide(card);
 
       // Exclude and add track Id
