@@ -199,7 +199,7 @@ request.onload = function () {
                                         parseFloat(question.Marks)/2 + 
                                         " Score! " + 
                                         -timer_count +
-                                        " seconds spent from bank."
+                                        " seconds spent from HP."
               card.style.backgroundColor = "#355d7e";
               score = score + parseFloat(question.Marks)/2;
               p_score.innerHTML = score;
@@ -208,7 +208,7 @@ request.onload = function () {
                                         parseFloat(question.Marks) + 
                                         " Score! " + 
                                         timer_count +
-                                        " added to the time bank.";
+                                        " added to HP.";
               card.style.backgroundColor = "#357e7b";
               health_bar(lives,lives+timer_count)
               lives = lives+timer_count;
@@ -218,11 +218,11 @@ request.onload = function () {
           } else {
             if (timer_count < 0){
               button_submit.innerHTML = "Incorrect! " + 
-                                        " 35 seconds lost from bank. You spent an additional" +
+                                        " 35 seconds lost from HP. You spent an additional" +
                                         -timer_count +
                                         " seconds. ";
             } else {
-              button_submit.innerHTML = "Incorrect! 35 seconds lost from bank.";
+              button_submit.innerHTML = "Incorrect! 35 seconds lost from HP.";
             }
             card.style.backgroundColor = "#7e3538";
             health_bar(lives,lives-35);
@@ -413,12 +413,12 @@ function health_bar(start,end) {
   function frame() {
     if (width > end) {
       width--; 
-      // elem.style.width = width + '%'; 
+      elem.style.width = width + '%'; 
       elem.innerHTML = width * 1;
     };
     if (width < end) {
       width++; 
-      // elem.style.width = width + '%'; 
+      elem.style.width = width + '%'; 
       elem.innerHTML = width * 1;
     };
   }
