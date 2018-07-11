@@ -89,7 +89,7 @@ var request = new XMLHttpRequest();
 const p_score = document.getElementById('p_score');
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'http://empirestreet.com.au/questionlist', true);
+request.open('GET', 'https://empirestreet.com.au/questionlist', true);
 request.onload = function () {
 
   // Begin accessing JSON data here
@@ -157,8 +157,8 @@ request.onload = function () {
       }
              
       //images
-        img_question.setAttribute('src',"http://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
-        img_q1.setAttribute('src',"http://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
+        img_question.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
+        img_q1.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
       
 
       //content
