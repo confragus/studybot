@@ -23,11 +23,9 @@
       "SVG": { linebreaks: { automatic: true, width: "75% container" } } 
     });
   </script>
-  <script type="text/javascript" src="../static/MathJax-master/MathJax.js"></script>
-  <script src="{{ url_for('static', filename = 'MathJax-master/MathJax.js') }}"></script>
+  <script type="text/javascript" src="http://empirestreet.com.au/MathJax-master/MathJax.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="../static/css/studybot.css">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studybot.css') }}">
+  <link rel="stylesheet" type="text/css" href="./studybot.css">
 
 </head>
 <body>
@@ -37,8 +35,7 @@
   <div class="d_nav">
     <div class="grid_nav">
       <div class="d_logo" onclick="window.location.href='./studybothome'">
-        <img src="../static/img/owl.png" class="nav_logo" onerror="this.style.display='none'">
-        <img src="{{ url_for('static', filename = 'img/owl.png') }}"" class="nav_logo" onerror="this.style.display='none'">
+        <img src="./owl.png" class="nav_logo">
       </div>
       <div class="d_logo" onclick="window.location.href='./studybotquiz'">Start Quiz</div>
       <div class="d_logo" onclick="window.location.href='./studybotblog'">Blog</div>
@@ -76,13 +73,12 @@
 <!-- welcome screen -->
 <div class="container">
   <div class="card">
-    <img src="../static/img/owl.png" class="splash_logo" onerror="this.style.display='none'">
-    <img src="{{ url_for('static', filename = 'img/owl.png') }}"" class="splash_logo" onerror="this.style.display='none'">
+    <img src="./owl.png" class="splash_logo">
     <h1>studybot</h1>
     <p class='center'>Develop Exam Muscles</p>
     <p class='center'>NSW HSC Mathematics General 2 Quiz</p>
     
-    <button class="button" onclick="window.location.href='./studybotquiz'">Start Quiz</button>
+    <button class="button" onclick="window.location.href='./quiz.html'">Start Quiz</button>
     <button class="collapsible">Subjects</button>
     
     <div class="content">
@@ -129,10 +125,7 @@
 <div class="d_bottom_padding"></div>
 
 <script type = "text/javascript" 
-         src = "{{ url_for('static', filename = 'js/studybot.js') }}" >
-</script>
-<script type = "text/javascript" 
-         src = "../static/js/studybot.js" >
+         src = "./studybot.js" >
 </script>
 
 </body>

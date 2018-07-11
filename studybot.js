@@ -157,13 +157,9 @@ request.onload = function () {
       }
              
       //images
-      if (location.hostname === "") {
-        img_question.setAttribute('src',"../static/img/qn/"+ question.CorePicture +".png" + imgv);
-        img_q1.setAttribute('src',"../static/img/qn/"+ question.Picture +".png" + imgv);
-      } else {
-        img_question.setAttribute('src',"../img/qn/"+ question.CorePicture +".png" + imgv);
-        img_q1.setAttribute('src',"../img/qn/"+ question.Picture +".png" + imgv);
-      };
+        img_question.setAttribute('src',"http://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
+        img_q1.setAttribute('src',"http://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
+      
 
       //content
       p_Answer.textContent = "Answer is: " + question.Answer;
