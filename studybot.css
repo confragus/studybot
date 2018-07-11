@@ -12,11 +12,11 @@ img {
   filter: invert(5%);
 }
 p {
-  font-size: 2.7em;
+  font-size: 1.5em;
   white-space: pre-line;
 }
 li {
-  font-size: 2.7em;
+  font-size: 1.5em;
 }
 a {
   color: #f8f8f2;
@@ -31,7 +31,7 @@ input {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
-  font-size: 2.7em;
+  font-size: 1.5em;
   width:99%;
   background-color: #777;
   color: #f8f8f2;
@@ -48,7 +48,7 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 2.7em;
+  font-size: 1.5em;
   margin: 4px 2px;
   cursor: pointer;
   width:99%;
@@ -83,7 +83,7 @@ button {
     border: none;
     text-align: center;
     outline: none;
-    font-size: 2.7em;
+    font-size: 1.5em;
     border: 2px solid #222;
 }
 .active, .collapsible:hover {
@@ -105,7 +105,7 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 2.7em;
+  font-size: 1.5em;
   margin: 4px 2px;
   cursor: pointer;
   width:99%;
@@ -157,7 +157,7 @@ button {
   vertical-align: middle;
 }
 #d_time{
-  font-size: 2.7em;
+  font-size: 1.5em;
 }
 
 /*gamebar*/
@@ -181,7 +181,7 @@ button {
 .grid_foot > div{
   color: white;
   text-align: center;
-  font-size: 2.7em;
+  font-size: 1.5em;
   margin: auto;
   overflow: hidden;
 }
