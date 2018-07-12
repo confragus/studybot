@@ -287,13 +287,13 @@ request.onload = function () {
   });
 
   // Start up
+  display(document.getElementById(current_qn));
+  smoothScroll(document.getElementById(current_qn));
+  timer_count = 0;
+  starttimer(0,saved_marks[current_qn]*(90-score));
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   MathJax.Hub.Queue(function(){
     hide(document.getElementById('load_icon'));
-    display(document.getElementById(current_qn));
-    smoothScroll(document.getElementById(current_qn));
-    timer_count = 0;
-    starttimer(0,saved_marks[current_qn]*(90-score));
   });
 
 }
