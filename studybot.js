@@ -38,6 +38,12 @@ window.smoothScroll = function(target) {
     scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
 }
 
+// rounding
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
 // Variables
 var score = 0;
 var maxscore = 0;
@@ -121,6 +127,10 @@ request.onload = function () {
       const p_mcD = document.createElement('p');
 
       const input_User = document.createElement('input');
+      const parsed_User = document.createElement('p');
+      parsed_User.setAttribute('class', 'parsed_User');
+      const eval_User = document.createElement('p');
+      eval_User.setAttribute('class', 'parsed_User');
       
       const button_submit = document.createElement('button');
       button_submit.setAttribute('class', 'button');
@@ -169,13 +179,29 @@ request.onload = function () {
       //button
       button_submit.addEventListener("click", myClickScript);
       button_submit.textContent = "submit";
+
+      //Javascript parsing
       input_User.addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
           button_submit.click();
+        } else {
+          parsed_User.style.color = "#333";
+          parsed_User.innerHTML= "$$"+input_User.value.toLowerCase()+"$$";
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+          MathJax.Hub.Queue(function(){
+            parsed_User.style.color = "#f8f8f2";
+          });
+          try {
+            var expression = new String(input_User.value);
+            eval_User.innerHTML = eval(expression.toString());
+          }
+          catch(err) {
+            eval_User.innerHTML = "";
+          }
         }
       });
-      input_User.addEventListener('focusout', function(e) {button_submit.click();});
+      // input_User.addEventListener('focusout', function(e) {button_submit.click();});
 
       function myClickScript() {
         // force answer on all inputs
@@ -193,7 +219,8 @@ request.onload = function () {
           smoothScroll(p_Solution);
 
           if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
-          parseFloat(input_User.value) === parseFloat(question.Answer)) {
+              round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
+              round(parseFloat(eval_User.innerHTML),6) === round(parseFloat(question.Answer),6)) {
             if (timer_count < 0){
               button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
                                         parseFloat(question.Marks)/2 + 
@@ -268,13 +295,15 @@ request.onload = function () {
       card.appendChild(p_mcC);
       card.appendChild(p_mcD);
       card.appendChild(input_User);
+      card.appendChild(parsed_User);
+      card.appendChild(eval_User);
       card.appendChild(button_submit);
       card.appendChild(p_Answer);
       card.appendChild(p_Solution);
 
       // Hide answers
-      hide(p_Answer);
-      hide(p_Solution);
+      // hide(p_Answer);
+      // hide(p_Solution);
       hide(card);
 
       // Exclude and add track Id

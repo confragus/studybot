@@ -238,7 +238,9 @@ button {
   padding: 10px;
   border-radius: 5px;
 }
-
+.parsed_User {
+  text-align: center;
+}
 /*loading icon*/
 .lds-ring {
   display: inline-block;
