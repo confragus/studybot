@@ -297,11 +297,11 @@ request.onload = function () {
               button_submit.innerHTML = "Correct! +" + 
                                         parseFloat(question.Marks) + 
                                         " Score! " + 
-                                        timer_count +
+                                        timer_count/2 +
                                         " added to HP.";
               card.style.backgroundColor = "#357e7b";
-              health_bar(lives,lives+timer_count)
-              lives = lives+timer_count;
+              health_bar(lives,lives+timer_count/2)
+              lives = lives+timer_count/2;
               score = score + parseFloat(question.Marks);
               p_score.innerHTML = score;
             }
