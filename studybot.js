@@ -80,11 +80,36 @@ function shuffle(sourceArray) {
 }
 
 //calculator
+
+function productRange(a,b) {
+  var product=a,i=a;
+ 
+  while (i++<b) {
+    product*=i;
+  }
+  return product;
+}
+
+function combinations(n,k) {
+  if (n==k) {
+    return 1;
+  } else {
+    k=Math.max(k,n-k);
+    return productRange(k+1,n)/productRange(1,n-k);
+  }
+}
+
+function permutations(n,k) {
+  return productRange(k+1,n);
+}
+
 function sin(angle) {return Math.sin(angle/180*Math.PI);};
 function cos(angle) {return Math.cos(angle/180*Math.PI);};
 function tan(angle) {return Math.tan(angle/180*Math.PI);};
 function pow(a,b) {return Math.pow(a,b);};
 function sqrt(a) {return Math.sqrt(a);};
+function comb(a,b) {return combinations(a, b);}
+function perm(a,b) {return permutations(a, b);}
 var pi = Math.PI;
 
 // Demo Section ################################################################
@@ -94,8 +119,7 @@ const input_demo = document.createElement('input');
 
 const eval_demo = document.createElement('p');
 eval_demo.setAttribute('class', 'parsed_User');
-eval_demo.innerHTML = "= undefined";
-eval_demo.style.color = "#444";
+eval_demo.innerHTML = "";
 
 demo.appendChild(input_demo);
 demo.appendChild(eval_demo);
@@ -106,12 +130,15 @@ input_demo.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
   } else {
     var expression = new String(input_demo.value);
-    if (expression.indexOf('=') === -1){
-      eval_demo.style.color = "#f8f8f2";
-      eval_demo.innerHTML = "= " + eval(expression.toString());
+    if (input_demo.value == "" || 
+        input_demo.value == null ||
+        expression.indexOf('=') != -1
+        ){
+      eval_demo.innerHTML = "";
     } else {
-      eval_demo.style.color = "#444";
-      eval_demo.innerHTML = "= undefined";
+      if (isNaN(eval(expression.toString())) != true){           
+        eval_demo.innerHTML = "= " + eval(expression.toString());
+      }
     }
   }
 });
@@ -169,8 +196,7 @@ request.onload = function () {
 
       const eval_User = document.createElement('p');
       eval_User.setAttribute('class', 'parsed_User');
-      eval_User.innerHTML = "= undefined";
-      eval_User.style.color = "#444";
+      eval_User.innerHTML = "";
       
       const button_submit = document.createElement('button');
       button_submit.setAttribute('class', 'button');
@@ -224,16 +250,19 @@ request.onload = function () {
         event.preventDefault();
         if (event.keyCode === 13) {
           button_submit.click();
-        } else {
-          var expression = new String(input_User.value);
-          if (expression.indexOf('=') === -1){
-            eval_User.style.color = "#f8f8f2";
-            eval_User.innerHTML = "= " + eval(expression.toString());
           } else {
-            eval_User.style.color = "#444";
-            eval_User.innerHTML = "= undefined";
+            var expression = new String(input_User.value);
+            if (input_User.value == "" || 
+                input_User.value == null ||
+                expression.indexOf('=') != -1
+                ){
+              eval_User.innerHTML = "= undefined";
+            } else {
+              if (isNaN(eval(expression.toString())) != true){           
+                eval_User.innerHTML = "= " + eval(expression.toString());
+              }
+            }
           }
-        }
       });
       // input_User.addEventListener('focusout', function(e) {button_submit.click();});
 
