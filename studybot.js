@@ -103,14 +103,17 @@ function permutations(n,k) {
   return productRange(k+1,n);
 }
 
+var pi = Math.PI;
 function sin(angle) {return Math.sin(angle/180*Math.PI);};
 function cos(angle) {return Math.cos(angle/180*Math.PI);};
 function tan(angle) {return Math.tan(angle/180*Math.PI);};
+function asin(x) {return Math.asin(x)*180/pi;};
+function acos(x) {return Math.acos(x)*180/pi;};
+function atan(x) {return Math.atan(x)*180/pi;};
 function pow(a,b) {return Math.pow(a,b);};
 function sqrt(a) {return Math.sqrt(a);};
 function comb(a,b) {return combinations(a, b);}
 function perm(a,b) {return permutations(a, b);}
-var pi = Math.PI;
 
 // Demo Section ################################################################
 
