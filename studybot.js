@@ -55,6 +55,8 @@ var lives = 100;
 var saved_marks = [];
 var stop_clock = 0;
 var limit_questions = 0;
+var path = window.location.pathname;
+var page = path.split("/").pop();
 
 // Hide/Display
 function display(x) {
@@ -76,6 +78,43 @@ function shuffle(sourceArray) {
   }
   return sourceArray;
 }
+
+//calculator
+function sin(angle) {return Math.sin(angle/180*Math.PI);};
+function cos(angle) {return Math.cos(angle/180*Math.PI);};
+function tan(angle) {return Math.tan(angle/180*Math.PI);};
+function pow(a,b) {return Math.pow(a,b);};
+function sqrt(a) {return Math.sqrt(a);};
+var pi = Math.PI;
+
+// Demo Section ################################################################
+
+const demo = document.getElementById('demo');
+const input_demo = document.createElement('input');
+
+const eval_demo = document.createElement('p');
+eval_demo.setAttribute('class', 'parsed_User');
+eval_demo.innerHTML = "= undefined";
+eval_demo.style.color = "#444";
+
+demo.appendChild(input_demo);
+demo.appendChild(eval_demo);
+
+//Javascript parsing
+input_demo.addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+  } else {
+    var expression = new String(input_demo.value);
+    if (expression.indexOf('=') === -1){
+      eval_demo.style.color = "#f8f8f2";
+      eval_demo.innerHTML = "= " + eval(expression.toString());
+    } else {
+      eval_demo.style.color = "#444";
+      eval_demo.innerHTML = "= undefined";
+    }
+  }
+});
 
 // Root Section ################################################################
 
@@ -127,8 +166,6 @@ request.onload = function () {
       const p_mcD = document.createElement('p');
 
       const input_User = document.createElement('input');
-      const parsed_User = document.createElement('p');
-      parsed_User.setAttribute('class', 'parsed_User');
 
       const eval_User = document.createElement('p');
       eval_User.setAttribute('class', 'parsed_User');
@@ -171,10 +208,9 @@ request.onload = function () {
       }
              
       //images
-        img_question.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
-        img_q1.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
+      img_question.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
+      img_q1.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
       
-
       //content
       p_Answer.textContent = "Answer is: " + question.Answer;
       p_Solution.textContent = question.Solution;
@@ -189,12 +225,6 @@ request.onload = function () {
         if (event.keyCode === 13) {
           button_submit.click();
         } else {
-          function sin(angle) {return Math.sin(angle/180*Math.PI);};
-          function cos(angle) {return Math.cos(angle/180*Math.PI);};
-          function tan(angle) {return Math.tan(angle/180*Math.PI);};
-          function pow(a,b) {return Math.pow(a,b);};
-          function sqrt(a) {return Math.sqrt(a);};
-          function pi() {return Math.PI;};
           var expression = new String(input_User.value);
           if (expression.indexOf('=') === -1){
             eval_User.style.color = "#f8f8f2";
@@ -298,8 +328,8 @@ request.onload = function () {
       card.appendChild(p_mcB);
       card.appendChild(p_mcC);
       card.appendChild(p_mcD);
+      
       card.appendChild(input_User);
-      card.appendChild(parsed_User);
       card.appendChild(eval_User);
       card.appendChild(button_submit);
       card.appendChild(p_Answer);
