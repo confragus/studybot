@@ -256,7 +256,7 @@ request.onload = function () {
                 input_User.value == null ||
                 expression.indexOf('=') != -1
                 ){
-              eval_User.innerHTML = "= undefined";
+              eval_User.innerHTML = "";
             } else {
               if (isNaN(eval(expression.toString())) != true){           
                 eval_User.innerHTML = "= " + eval(expression.toString());
