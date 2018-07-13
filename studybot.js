@@ -129,8 +129,11 @@ request.onload = function () {
       const input_User = document.createElement('input');
       const parsed_User = document.createElement('p');
       parsed_User.setAttribute('class', 'parsed_User');
+
       const eval_User = document.createElement('p');
       eval_User.setAttribute('class', 'parsed_User');
+      eval_User.innerHTML = "= undefined";
+      eval_User.style.color = "#444";
       
       const button_submit = document.createElement('button');
       button_submit.setAttribute('class', 'button');
@@ -186,18 +189,19 @@ request.onload = function () {
         if (event.keyCode === 13) {
           button_submit.click();
         } else {
-          parsed_User.style.color = "#333";
-          parsed_User.innerHTML= "$$"+input_User.value.toLowerCase()+"$$";
-          MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-          MathJax.Hub.Queue(function(){
-            parsed_User.style.color = "#f8f8f2";
-          });
-          try {
-            var expression = new String(input_User.value);
-            eval_User.innerHTML = eval(expression.toString());
-          }
-          catch(err) {
-            eval_User.innerHTML = "";
+          function sin(angle) {return Math.sin(angle/180*Math.PI);};
+          function cos(angle) {return Math.cos(angle/180*Math.PI);};
+          function tan(angle) {return Math.tan(angle/180*Math.PI);};
+          function pow(a,b) {return Math.pow(a,b);};
+          function sqrt(a) {return Math.sqrt(a);};
+          function pi() {return Math.PI;};
+          var expression = new String(input_User.value);
+          if (expression.indexOf('=') === -1){
+            eval_User.style.color = "#f8f8f2";
+            eval_User.innerHTML = "= " + eval(expression.toString());
+          } else {
+            eval_User.style.color = "#444";
+            eval_User.innerHTML = "= undefined";
           }
         }
       });
@@ -220,7 +224,7 @@ request.onload = function () {
 
           if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
               round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
-              round(parseFloat(eval_User.innerHTML),6) === round(parseFloat(question.Answer),6)) {
+              round(parseFloat(eval_User.innerHTML.substring(2)),6) === round(parseFloat(question.Answer),6)) {
             if (timer_count < 0){
               button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
                                         parseFloat(question.Marks)/2 + 
