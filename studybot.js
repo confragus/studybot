@@ -249,7 +249,7 @@ request.onload = function () {
       input_User.addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
-          button_submit.click();
+          // button_submit.click();
           } else {
             var expression = new String(input_User.value);
             if (input_User.value == "" || 
