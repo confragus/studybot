@@ -155,244 +155,247 @@ const app = document.getElementById('root');
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-// add logo and containder to the app root
-app.appendChild(container);
-
-// Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest();
-
 const p_score = document.getElementById('p_score');
 const p_level = document.getElementById('p_level');
 
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://empirestreet.com.au/questionlist', true);
-request.onload = function () {
+// add logo and containder to the app root
+app.appendChild(container);
 
-  // Begin accessing JSON data here
-  var data = JSON.parse(this.response);
+function new_question(){
 
-  datarandom = shuffle(data);
+  // Create a request variable and assign a new XMLHttpRequest object to it.
+  var request = new XMLHttpRequest();
 
-  datarandom.forEach(question => {
+  // Open a new connection, using the GET request on the URL endpoint
+  request.open('GET', 'https://empirestreet.com.au/questionlist', true);
+  request.onload = function () {
 
-    limit_questions++;
-    if(limit_questions<100){
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response);
 
-      // Create a div with a card class
-      const card = document.createElement('div');
-      card.setAttribute('class', 'card');
+    datarandom = shuffle(data);
 
-      const p_id = document.createElement('h5');
-      const p_CoreQuestion = document.createElement('p');
-      const img_question = document.createElement('img');
+    datarandom.forEach(question => {
 
-      const img_q1 = document.createElement('img');
+      limit_questions++;
+      if(limit_questions<100){
 
-      const p_Question = document.createElement('p');
+        // Create a div with a card class
+        const card = document.createElement('div');
+        card.setAttribute('class', 'card');
 
-      const p_mcA = document.createElement('p');
-      const p_mcB = document.createElement('p');
-      const p_mcC = document.createElement('p');
-      const p_mcD = document.createElement('p');
+        const p_id = document.createElement('h5');
+        const p_CoreQuestion = document.createElement('p');
+        const img_question = document.createElement('img');
 
-      const input_User = document.createElement('input');
+        const img_q1 = document.createElement('img');
 
-      const eval_User = document.createElement('p');
-      eval_User.setAttribute('class', 'parsed_User');
-      eval_User.innerHTML = "";
-      
-      const button_submit = document.createElement('button');
-      button_submit.setAttribute('class', 'button');
-      
-      const p_Answer = document.createElement('p');
+        const p_Question = document.createElement('p');
 
-      const p_Solution = document.createElement('p');
-      
-      function marks(x){
-        if (x === '1'){
-          return " (" + x + " mark)"
-        } else {
-          return " (" + x + " marks)"
-        }
-      }
+        const p_mcA = document.createElement('p');
+        const p_mcB = document.createElement('p');
+        const p_mcC = document.createElement('p');
+        const p_mcD = document.createElement('p');
 
-      //multiple choice questions
-      if (question.A != "") {
-        p_mcA.textContent = "A) " + question.A;
-        p_mcB.textContent = "B) " + question.B;
-        p_mcC.textContent = "C) " + question.C;
-        p_mcD.textContent = "D) " + question.D;
-      }
-      
-      //tag
-      p_id.textContent = question.Subject + "-" + question.Year + " Q-"
-        + question.ID + question.ID2 + question.ID3 + question.Exclude;  
+        const input_User = document.createElement('input');
 
-      //question
-      if (question.Question != ""){
-        p_CoreQuestion.textContent = question.CoreQuestion;
-        p_Question.textContent = question.Question + marks(question.Marks);
-      } else {
-        p_CoreQuestion.textContent = question.CoreQuestion + marks(question.Marks);
-      }
-             
-      //images
-      img_question.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
-      img_q1.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
-      
-      //content
-      p_Answer.textContent = "Answer is: " + question.Answer;
-      p_Solution.textContent = question.Solution;
+        const eval_User = document.createElement('p');
+        eval_User.setAttribute('class', 'parsed_User');
+        eval_User.innerHTML = "";
+        
+        const button_submit = document.createElement('button');
+        button_submit.setAttribute('class', 'button');
+        
+        const p_Answer = document.createElement('p');
 
-      //button
-      button_submit.addEventListener("click", myClickScript);
-      button_submit.textContent = "submit";
-
-      //Javascript parsing
-      input_User.addEventListener("keyup", function(event) {
-        event.preventDefault();
-        if (event.keyCode === 13) {
-          // button_submit.click();
+        const p_Solution = document.createElement('p');
+        
+        function marks(x){
+          if (x === '1'){
+            return " (" + x + " mark)"
           } else {
-            var expression = new String(input_User.value);
-            if (input_User.value == "" || 
-                input_User.value == null ||
-                expression.indexOf('=') != -1
-                ){
-              eval_User.innerHTML = "";
+            return " (" + x + " marks)"
+          }
+        }
+
+        //multiple choice questions
+        if (question.A != "") {
+          p_mcA.textContent = "A) " + question.A;
+          p_mcB.textContent = "B) " + question.B;
+          p_mcC.textContent = "C) " + question.C;
+          p_mcD.textContent = "D) " + question.D;
+        }
+        
+        //tag
+        p_id.textContent = question.Subject + "-" + question.Year + " Q-"
+          + question.ID + question.ID2 + question.ID3 + question.Exclude;  
+
+        //question
+        if (question.Question != ""){
+          p_CoreQuestion.textContent = question.CoreQuestion;
+          p_Question.textContent = question.Question + marks(question.Marks);
+        } else {
+          p_CoreQuestion.textContent = question.CoreQuestion + marks(question.Marks);
+        }
+               
+        //images
+        img_question.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.CorePicture +".png" + imgv);
+        img_q1.setAttribute('src',"https://empirestreet.com.au/img/qn/"+ question.Picture +".png" + imgv);
+        
+        //content
+        p_Answer.textContent = "Answer is: " + question.Answer;
+        p_Solution.textContent = question.Solution;
+
+        //button
+        button_submit.addEventListener("click", myClickScript);
+        button_submit.textContent = "submit";
+
+        //Javascript parsing
+        input_User.addEventListener("keyup", function(event) {
+          event.preventDefault();
+          if (event.keyCode === 13) {
+            // button_submit.click();
             } else {
-              if (isNaN(eval(expression.toString())) != true){           
-                eval_User.innerHTML = "= " + eval(expression.toString());
+              var expression = new String(input_User.value);
+              if (input_User.value == "" || 
+                  input_User.value == null ||
+                  expression.indexOf('=') != -1
+                  ){
+                eval_User.innerHTML = "";
+              } else {
+                if (isNaN(eval(expression.toString())) != true){           
+                  eval_User.innerHTML = "= " + eval(expression.toString());
+                }
               }
             }
-          }
-      });
-      // input_User.addEventListener('focusout', function(e) {button_submit.click();});
+        });
+        // input_User.addEventListener('focusout', function(e) {button_submit.click();});
 
-      function myClickScript() {
-        // force answer on all inputs
-        if (input_User.value === "") {
-          return;
-        } else {      
-          // lock last question
-          button_submit.disabled = true;
-          button_submit.setAttribute('class', 'submitted');
-          input_User.readOnly = true;      
+        function myClickScript() {
+          // force answer on all inputs
+          if (input_User.value === "") {
+            return;
+          } else {      
+            // lock last question
+            button_submit.disabled = true;
+            button_submit.setAttribute('class', 'submitted');
+            input_User.readOnly = true;      
 
-          // display answers
-          display(p_Answer);
-          display(p_Solution);
-          smoothScroll(p_Solution);
+            // display answers
+            display(p_Answer);
+            display(p_Solution);
+            smoothScroll(p_Solution);
 
-          if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
-              round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
-              round(parseFloat(eval_User.innerHTML.substring(2)),6) === round(parseFloat(question.Answer),6)) {
-            if (timer_count < 0){
-              button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
-                                        parseFloat(question.Marks)/2 + 
-                                        " Score! " + 
-                                        -timer_count +
-                                        " seconds spent from HP."
-              card.style.backgroundColor = "#355d7e";
-              score = score + parseFloat(question.Marks)/2;
-              p_score.innerHTML = score;
+            if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
+                round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
+                round(parseFloat(eval_User.innerHTML.substring(2)),6) === round(parseFloat(question.Answer),6)) {
+              if (timer_count < 0){
+                button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
+                                          parseFloat(question.Marks)/2 + 
+                                          " Score! " + 
+                                          -timer_count +
+                                          " seconds spent from HP."
+                card.style.backgroundColor = "#355d7e";
+                score = score + parseFloat(question.Marks)/2;
+                p_score.innerHTML = score;
+              } else {
+                button_submit.innerHTML = "Correct! +" + 
+                                          parseFloat(question.Marks) + 
+                                          " Score! " + 
+                                          timer_count/2 +
+                                          " added to HP.";
+                card.style.backgroundColor = "#357e7b";
+                health_bar(lives,lives+timer_count/2)
+                lives = lives+timer_count/2;
+                score = score + parseFloat(question.Marks);
+                p_score.innerHTML = score;
+              }
             } else {
-              button_submit.innerHTML = "Correct! +" + 
-                                        parseFloat(question.Marks) + 
-                                        " Score! " + 
-                                        timer_count/2 +
-                                        " added to HP.";
-              card.style.backgroundColor = "#357e7b";
-              health_bar(lives,lives+timer_count/2)
-              lives = lives+timer_count/2;
-              score = score + parseFloat(question.Marks);
-              p_score.innerHTML = score;
-            }
-          } else {
-            if (timer_count < 0){
-              button_submit.innerHTML = "Incorrect! " + 
-                                        " 35 seconds lost from HP. You spent an additional" +
-                                        -timer_count +
-                                        " seconds. ";
-            } else {
-              button_submit.innerHTML = "Incorrect! 35 seconds lost from HP.";
-            }
-            card.style.backgroundColor = "#7e3538";
-            health_bar(lives,lives-35);
-            lives = lives-35;  
+              if (timer_count < 0){
+                button_submit.innerHTML = "Incorrect! " + 
+                                          " 35 seconds lost from HP. You spent an additional" +
+                                          -timer_count +
+                                          " seconds. ";
+              } else {
+                button_submit.innerHTML = "Incorrect! 35 seconds lost from HP.";
+              }
+              card.style.backgroundColor = "#7e3538";
+              health_bar(lives,lives-35);
+              lives = lives-35;  
+            };
+
+            // show next question
+            current_qn += 1;
+            stop_clock = 1;
+            setTimeout(function(){
+              if (lives <= 0){
+                document.getElementsByClassName('button').disabled = true;
+                alert("You have died. Your score is: " + score);
+              } else {
+                stop_clock = 0;
+                setTimeout(function(){
+                new_question();
+                // smoothScroll(document.getElementById(current_qn));
+                timer_count = 0;
+                level = Math.floor(score/5);
+                p_level.innerHTML = level;
+                starttimer(0,saved_marks[current_qn]*(90-level*2));
+                }, 2000);
+              }
+            } ,1000);
           };
+        };
 
-          // show next question
-          current_qn += 1;
-          stop_clock = 1;
-          setTimeout(function(){
-            if (lives <= 0){
-              document.getElementsByClassName('button').disabled = true;
-              alert("You have died. Your score is: " + score);
-            } else {
-              stop_clock = 0;
-              setTimeout(function(){
-              display(document.getElementById(current_qn));
-              smoothScroll(document.getElementById(current_qn));
-              timer_count = 0;
-              level = Math.floor(score/5);
-              p_level.innerHTML = level;
-              starttimer(0,saved_marks[current_qn]*(90-level*2));
-              }, 2000);
-            }
-          } ,1000);
+        // Append the cards to the container element
+        container.appendChild(card);
+
+        card.appendChild(p_id);
+        card.appendChild(p_CoreQuestion);
+        if( question.CorePicture != "") {
+          card.appendChild(img_question);
+        };
+        card.appendChild(p_Question);
+        if( question.Picture != "") {
+          card.appendChild(img_q1);
+        };
+        card.appendChild(p_mcA);
+        card.appendChild(p_mcB);
+        card.appendChild(p_mcC);
+        card.appendChild(p_mcD);
+        
+        card.appendChild(input_User);
+        card.appendChild(eval_User);
+        card.appendChild(button_submit);
+        card.appendChild(p_Answer);
+        card.appendChild(p_Solution);
+
+        // Hide answers
+        hide(p_Answer);
+        hide(p_Solution);
+
+        // Exclude and add track Id
+        if (question.Exclude === ""){
+          card_id += 1;
+          card.id = card_id;
+          saved_marks[card_id] = parseFloat(question.Marks);
         };
       };
+    });
 
-      // Append the cards to the container element
-      container.appendChild(card);
+    // Start up
+    // display(document.getElementById(current_qn));
+    // smoothScroll(document.getElementById(current_qn));
+    timer_count = 0;
+    starttimer(0,saved_marks[current_qn]*(90-score));
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    MathJax.Hub.Queue(function(){
+      hide(document.getElementById('load_icon'));
+    });
 
-      card.appendChild(p_id);
-      card.appendChild(p_CoreQuestion);
-      if( question.CorePicture != "") {
-        card.appendChild(img_question);
-      };
-      card.appendChild(p_Question);
-      if( question.Picture != "") {
-        card.appendChild(img_q1);
-      };
-      card.appendChild(p_mcA);
-      card.appendChild(p_mcB);
-      card.appendChild(p_mcC);
-      card.appendChild(p_mcD);
-      
-      card.appendChild(input_User);
-      card.appendChild(eval_User);
-      card.appendChild(button_submit);
-      card.appendChild(p_Answer);
-      card.appendChild(p_Solution);
-
-      // Hide answers
-      hide(p_Answer);
-      hide(p_Solution);
-      hide(card);
-
-      // Exclude and add track Id
-      if (question.Exclude === ""){
-        card_id += 1;
-        card.id = card_id;
-        saved_marks[card_id] = parseFloat(question.Marks);
-      };
-    };
-  });
-
-  // Start up
-  display(document.getElementById(current_qn));
-  smoothScroll(document.getElementById(current_qn));
-  timer_count = 0;
-  starttimer(0,saved_marks[current_qn]*(90-score));
-  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-  MathJax.Hub.Queue(function(){
-    hide(document.getElementById('load_icon'));
-  });
-
+  }
+  request.send();
 }
-request.send();
+new_question();
 
 // Timer ########################################################################
 
