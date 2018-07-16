@@ -392,7 +392,8 @@ function new_question(){
             lives = lives-35;  
           };
 
-          if (button_count == 0){
+          // New Question
+          if (button_count == 0 && lives > 0){
             Core_printed = 0;
             timer_count = 1;
             new_question();
@@ -456,7 +457,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 MathJax.Hub.Queue(function(){
   hide(document.getElementById('load_icon'));
   timer_count = 0;
-  starttimer(0,0);
+  starttimer(0,3);
 });
 
 
