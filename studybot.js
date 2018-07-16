@@ -415,17 +415,19 @@ function new_question(){
         timer_add = parseFloat(question.Marks)*(90-score);
 
         // Append the cards to the container element
-        container.appendChild(card);
+        container.appendChild(card);       
 
-        card.appendChild(hr_bar);
-
-        card.appendChild(p_id);
+        
         if (Core_printed == 0){
           Core_printed = 1;
+          card.appendChild(hr_bar);
+          card.appendChild(p_id);
           card.appendChild(p_CoreQuestion);
           if( question.CorePicture != "") {
             card.appendChild(img_question);
           };
+        } else {
+          card.appendChild(p_id);
         }
 
         card.appendChild(p_Question);
