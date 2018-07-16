@@ -263,6 +263,9 @@ function new_question(){
     data.forEach(question => { //########################################################################
 
       // Create a div with a card class
+
+      const hr_bar = document.createElement('hr');
+
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
 
@@ -279,8 +282,10 @@ function new_question(){
       const p_mcC = document.createElement('p');
       const p_mcD = document.createElement('p');
 
-      const input_User = document.createElement('input');
+      const d_calculator = document.createElement('div');
+      d_calculator.setAttribute('class', 'd_calculator');
 
+      const input_User = document.createElement('input');
       const eval_User = document.createElement('p');
       eval_User.setAttribute('class', 'parsed_User');
       eval_User.innerHTML = "";
@@ -412,6 +417,8 @@ function new_question(){
         // Append the cards to the container element
         container.appendChild(card);
 
+        card.appendChild(hr_bar);
+
         card.appendChild(p_id);
         if (Core_printed == 0){
           Core_printed = 1;
@@ -429,9 +436,11 @@ function new_question(){
         card.appendChild(p_mcB);
         card.appendChild(p_mcC);
         card.appendChild(p_mcD);
+
+        card.appendChild(d_calculator)
         
-        card.appendChild(input_User);
-        card.appendChild(eval_User);
+        d_calculator.appendChild(input_User);
+        d_calculator.appendChild(eval_User);
         
         card.appendChild(button_submit);
         smoothScroll(button_submit);
@@ -458,6 +467,7 @@ new_question();
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 MathJax.Hub.Queue(function(){
   hide(document.getElementById('load_icon'));
+  hide(document.getElementById('d_reset'));
   timer_count = 0;
   starttimer(0,3);
 });
