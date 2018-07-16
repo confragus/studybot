@@ -26,6 +26,8 @@ function timer() {
   if (lives <= 0){
     document.getElementsByClassName('button').disabled = true;
     alert("You have died. Your score is: " + score);
+    hide(document.getElementById("d_time"));
+    display(document.getElementById("d_reset"));
   } else {
     if (stop_clock === 0){
       if (timer_count >= 0) {
