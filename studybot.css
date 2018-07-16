@@ -70,7 +70,7 @@ button {
   background-color: #357e7b;
   border: none;
   color: white;
-  width:99%;
+  width:100%;
   border: 2px solid #222;
   border-radius: 5px;
   font-size: 1em;
@@ -111,7 +111,7 @@ hr {
     color: white;
     cursor: pointer;
     padding: 8px;
-    width: 99%;
+    width: 100%;
     border: none;
     text-align: center;
     outline: none;

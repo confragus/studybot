@@ -207,9 +207,9 @@ var Core_printed = 0;
 const demo = document.getElementById('demo');
 const input_demo = document.createElement('input');
 
-const eval_demo = document.createElement('p');
-eval_demo.setAttribute('class', 'parsed_User');
-eval_demo.innerHTML = "";
+const eval_demo = document.createElement('input');
+eval_demo.style.backgroundColor = "#555";
+eval_demo.readOnly = true; 
 
 demo.appendChild(input_demo);
 demo.appendChild(eval_demo);
@@ -224,14 +224,19 @@ input_demo.addEventListener("keyup", function(event) {
         input_demo.value == null ||
         expression.indexOf('=') != -1
         ){
-      eval_demo.innerHTML = "";
+      eval_demo.value = "";
     } else {
       if (isNaN(eval(expression.toString())) != true){           
-        eval_demo.innerHTML = "= " + eval(expression.toString());
+        eval_demo.value = "= " + eval(expression.toString());
       }
     }
   }
 });
+
+try {
+  document.getElementById('b_demo').click();
+}
+catch {}
 
 // Root Section ################################################################
 
@@ -286,9 +291,11 @@ function new_question(){
       d_calculator.setAttribute('class', 'd_calculator');
 
       const input_User = document.createElement('input');
-      const eval_User = document.createElement('p');
-      eval_User.setAttribute('class', 'parsed_User');
-      eval_User.innerHTML = "";
+      const eval_User = document.createElement('input');
+      eval_User.style.backgroundColor = "#555";
+      eval_User.readOnly = true;  
+      // eval_User.setAttribute('class', 'parsed_User');
+      // eval_User.value = "";
       
       const button_submit = document.createElement('button');
       button_submit.setAttribute('class', 'button');
@@ -348,10 +355,10 @@ function new_question(){
                 input_User.value == null ||
                 expression.indexOf('=') != -1
                 ){
-              eval_User.innerHTML = "";
+              eval_User.value = "";
             } else {
               if (isNaN(eval(expression.toString())) != true){           
-                eval_User.innerHTML = "= " + eval(expression.toString());
+                eval_User.value = "= " + eval(expression.toString());
               }
             }
           }
@@ -376,7 +383,7 @@ function new_question(){
 
           if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
               round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
-              round(parseFloat(eval_User.innerHTML.substring(2)),6) === round(parseFloat(question.Answer),6)) {
+              round(parseFloat(eval_User.value.substring(2)),6) === round(parseFloat(question.Answer),6)) {
             if (timer_count < 0){
               button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
                                         parseFloat(question.Marks)/2 + 
