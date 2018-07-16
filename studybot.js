@@ -282,10 +282,12 @@ function new_question(){
 
       const p_Question = document.createElement('p');
 
-      const p_mcA = document.createElement('p');
-      const p_mcB = document.createElement('p');
-      const p_mcC = document.createElement('p');
-      const p_mcD = document.createElement('p');
+      const d_mc = document.createElement('div');
+      d_mc.setAttribute('class', 'd_mc');
+      const p_mcA = document.createElement('button');
+      const p_mcB = document.createElement('button');
+      const p_mcC = document.createElement('button');
+      const p_mcD = document.createElement('button');
 
       const d_calculator = document.createElement('div');
       d_calculator.setAttribute('class', 'd_calculator');
@@ -294,8 +296,10 @@ function new_question(){
       const eval_User = document.createElement('input');
       eval_User.style.backgroundColor = "#555";
       eval_User.readOnly = true;  
-      // eval_User.setAttribute('class', 'parsed_User');
-      // eval_User.value = "";
+      
+      const p_mcanswer = document.createElement('p');
+      hide(p_mcanswer);
+      p_mcanswer.innerHTML = "";
       
       const button_submit = document.createElement('button');
       button_submit.setAttribute('class', 'button');
@@ -320,6 +324,11 @@ function new_question(){
         p_mcD.textContent = "D) " + question.D;
       }
       
+      p_mcA.addEventListener("click", myClickScriptA);
+      p_mcB.addEventListener("click", myClickScriptB);
+      p_mcC.addEventListener("click", myClickScriptC);
+      p_mcD.addEventListener("click", myClickScriptD);
+
       //tag
       p_id.textContent = question.Subject + "-" + question.Year + " Q-"
         + question.ID + question.ID2 + question.ID3 + question.Exclude;  
@@ -341,7 +350,7 @@ function new_question(){
       p_Solution.textContent = question.Solution;
 
       //button
-      button_submit.addEventListener("click", myClickScript);
+      button_submit.addEventListener("click", myClickScriptW);
       button_submit.textContent = "submit";
 
       //Javascript parsing
@@ -365,9 +374,15 @@ function new_question(){
       });
       // input_User.addEventListener('focusout', function(e) {button_submit.click();});
 
-      function myClickScript() {
+      function myClickScriptA() {myClickScript("a")};
+      function myClickScriptB() {myClickScript("b")};
+      function myClickScriptC() {myClickScript("c")};
+      function myClickScriptD() {myClickScript("d")};
+      function myClickScriptW() {myClickScript("w")};
+
+      function myClickScript(mc) {
         // force answer on all inputs
-        if (input_User.value === "") {
+        if (input_User.value === "" && mc == "w") {
           return;
         } else {      
           // lock last question
@@ -383,7 +398,8 @@ function new_question(){
 
           if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
               round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
-              round(parseFloat(eval_User.value.substring(2)),6) === round(parseFloat(question.Answer),6)) {
+              round(parseFloat(eval_User.value.substring(2)),6) === round(parseFloat(question.Answer),6) ||
+              mc === String(question.Answer).toLowerCase()) {
             if (timer_count < 0){
               button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
                                         parseFloat(question.Marks)/2 + 
@@ -441,22 +457,28 @@ function new_question(){
         if( question.Picture != "") {
           card.appendChild(img_q1);
         };
-        card.appendChild(p_mcA);
-        card.appendChild(p_mcB);
-        card.appendChild(p_mcC);
-        card.appendChild(p_mcD);
+
+        if( question.A != "") {
+          card.appendChild(p_mcA);
+          card.appendChild(p_mcB);
+          card.appendChild(p_mcC);
+          card.appendChild(p_mcD);
+        }
 
         card.appendChild(d_calculator)
         
         d_calculator.appendChild(input_User);
         d_calculator.appendChild(eval_User);
         
-        card.appendChild(button_submit);
-        smoothScroll(button_submit);
-        button_count++;
+        if( question.A == "") {
+          card.appendChild(button_submit);
+        }
 
         card.appendChild(p_Answer);
         card.appendChild(p_Solution);
+
+        button_count++;
+        smoothScroll(d_calculator);
 
         // Hide answers
         hide(p_Answer);
