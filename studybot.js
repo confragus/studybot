@@ -387,11 +387,17 @@ function new_question(){
         } else {      
           // lock last question
           button_submit.disabled = true;
+          p_mcA.disabled = true;
+          p_mcB.disabled = true;
+          p_mcC.disabled = true;
+          p_mcD.disabled = true;
           button_submit.setAttribute('class', 'submitted');
           input_User.readOnly = true;    
           button_count--;  
 
           // display answers
+          display(button_submit);
+          display(p_id);
           display(p_Answer);
           display(p_Solution);
           smoothScroll(p_Solution);
@@ -444,13 +450,13 @@ function new_question(){
         if (Core_printed == 0){
           Core_printed = 1;
           card.appendChild(hr_bar);
-          card.appendChild(p_id);
+          
           card.appendChild(p_CoreQuestion);
           if( question.CorePicture != "") {
             card.appendChild(img_question);
           };
         } else {
-          card.appendChild(p_id);
+          
         }
 
         card.appendChild(p_Question);
@@ -470,10 +476,12 @@ function new_question(){
         d_calculator.appendChild(input_User);
         d_calculator.appendChild(eval_User);
         
-        if( question.A == "") {
-          card.appendChild(button_submit);
+        card.appendChild(button_submit);
+        if( question.A != "") {
+          hide(button_submit);
         }
 
+        card.appendChild(p_id);
         card.appendChild(p_Answer);
         card.appendChild(p_Solution);
 
@@ -481,6 +489,7 @@ function new_question(){
         smoothScroll(d_calculator);
 
         // Hide answers
+        hide(p_id);
         hide(p_Answer);
         hide(p_Solution);
       }          

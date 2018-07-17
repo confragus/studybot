@@ -43,8 +43,8 @@ input {
   border: none;
   margin: 1px;
   padding-left: 1em;
-  border: 2px solid #222;
-  border-radius: 5px;
+  border: 1px solid #222;
+  border-radius: 3px;
 }
 input:focus,
 select:focus,
@@ -75,8 +75,8 @@ button {
   border: none;
   color: white;
   width:100%;
-  border: 2px solid #222;
-  border-radius: 5px;
+  border: 1px solid #222;
+  border-radius: 3px;
   font-size: 1em;
   cursor: pointer;
   display: inline-block;
