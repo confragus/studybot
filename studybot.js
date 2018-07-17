@@ -22,8 +22,23 @@ function timer() {
   timer_add = 0;
   if (lives <= 0){
     document.getElementsByClassName('button').disabled = true;
-    alert("You have died. Your score is: " + score);
-    hide(document.getElementById("d_time"));
+    var score_report = prompt("You have died. Your score is " + score + 
+                              ". Please enter your nickname:", "studybot");
+    
+    var score_form = document.createElement('form');
+    score_form.setAttribute('action', 'http://localhost:8000/highscores');
+    score_form.setAttribute('method', 'post');
+    container.appendChild(score_form);
+    var score_name = document.createElement("INPUT");
+    score_name.setAttribute("value", score_report);
+    score_name.setAttribute('name', 'score_name');
+    var score_this = document.createElement("INPUT");
+    score_this.setAttribute("value", score);
+    score_this.setAttribute('name', 'score_this');
+    score_form.appendChild(score_name);
+    score_form.appendChild(score_this);
+    score_form.submit();
+
   } else {
     if (stop_clock === 0){
       if (timer_count >= 0) {
@@ -162,63 +177,98 @@ var page = path.split("/").pop();
 var button_count = 0;
 var Core_printed = 0;
 
-// Demo Section ################################################################
-
-const demo = document.getElementById('demo');
-const input_demo = document.createElement('input');
-
-const input_User_text = document.createElement('h5');
-input_User_text.innerHTML = "input:";
-
-const eval_User_text = document.createElement('h5');
-eval_User_text.innerHTML = "result:";
-
-const eval_demo = document.createElement('input');
-eval_demo.readOnly = true; 
-
-demo.appendChild(input_User_text);
-demo.appendChild(eval_User_text);
-demo.appendChild(input_demo);
-demo.appendChild(eval_demo);
-
-//Javascript parsing
-input_demo.addEventListener("keyup", function(event) {
-  event.preventDefault();
-  if (event.keyCode === 13) {
-  } else {
-    var expression = new String(input_demo.value);
-    if (input_demo.value == "" || 
-        input_demo.value == null ||
-        expression.indexOf('=') != -1
-        ){
-      eval_demo.value = "";
-    } else {
-      if (isNaN(eval(expression.toString())) != true){           
-        eval_demo.value = "= " + eval(expression.toString());
-      }
-    }
-  }
-});
-
-try {
-  document.getElementById('b_demo').click();
-}
-catch {}
-
-// Root Section ################################################################
-
-// Access div in index.html
 const app = document.getElementById('root');
-
-// set up container
+const p_score = document.getElementById('p_score');
+const p_level = document.getElementById('p_level');
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-const p_score = document.getElementById('p_score');
-const p_level = document.getElementById('p_level');
+var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
 
-// add logo and containder to the app root
-app.appendChild(container);
+if( filename == "quiz.html") {
+  app.appendChild(container);
+}
+
+// Demo Section ################################################################
+
+if( filename == "index.html") {
+  const demo = document.getElementById('demo');
+  const input_demo = document.createElement('input');
+
+  const input_User_text = document.createElement('h5');
+  input_User_text.innerHTML = "input:";
+
+  const eval_User_text = document.createElement('h5');
+  eval_User_text.innerHTML = "result:";
+
+  const eval_demo = document.createElement('input');
+  eval_demo.readOnly = true; 
+
+  demo.appendChild(input_User_text);
+  demo.appendChild(eval_User_text);
+  demo.appendChild(input_demo);
+  demo.appendChild(eval_demo);
+
+  //Javascript parsing
+  input_demo.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+    } else {
+      var expression = new String(input_demo.value);
+      if (input_demo.value == "" || 
+          input_demo.value == null ||
+          expression.indexOf('=') != -1
+          ){
+        eval_demo.value = "";
+      } else {
+        if (isNaN(eval(expression.toString())) != true){           
+          eval_demo.value = "= " + eval(expression.toString());
+        }
+      }
+    }
+  });
+}
+
+// Historical Score section ################################################################
+
+function history_score(){
+  // Create a request variable and assign a new XMLHttpRequest object to it.
+  var request = new XMLHttpRequest();
+
+  // Open a new connection, using the GET request on the URL endpoint
+  request.open('GET', 'http://localhost:8000/savescores', true);
+  request.onload = function () {
+    var data = JSON.parse(this.response);
+
+    var saved_score = -1;
+    var saved_hero = "no one";
+    var saved_count = 0;
+    var saved_total = 0;
+
+    data.forEach(prev_score => {
+      parsed_prev_score = parseInt(prev_score.score_this)
+      saved_count++;
+      saved_total = saved_total + parsed_prev_score;
+      if (parsed_prev_score > saved_score){
+        saved_score = parsed_prev_score;
+        saved_hero = prev_score.nickname;
+        saved_time = prev_score.time;
+      } 
+    })
+
+    var p_save_score = document.getElementById('p_save_score');
+    var p_average_score = document.getElementById('p_average_score');
+    p_save_score.innerHTML = "High score of " + saved_score + " by " + saved_hero + " on " + saved_time.substring(0,10);
+    p_average_score.innerHTML = "Average score of " + saved_total / saved_count;
+  }
+  request.send();
+}
+history_score();
+hide(p_save_score);
+hide(p_average_score);
+
+// Question Section ################################################################
 
 function new_question(){
 
@@ -444,6 +494,7 @@ function new_question(){
           };
         } else {
           container.appendChild(card);
+          card.appendChild(p_timeadded); 
         }
 
         card.appendChild(p_Question);
@@ -493,13 +544,18 @@ function new_question(){
   request.send();
 }
 
-//start up
-new_question();
-MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-MathJax.Hub.Queue(function(){
+
+
+//start up ###########################
+if (filename == "quiz.html"){
+  new_question();
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  MathJax.Hub.Queue(function(){
   hide(document.getElementById('load_icon'));
   timer_count = 0;
   starttimer(0,3);
 });
+}
+
 
 
