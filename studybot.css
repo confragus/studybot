@@ -94,6 +94,7 @@ hr {
     background-color: #255c56;
 }
 
+
 /*open screen*/
 .d_top_padding {
   padding:2em;
@@ -134,19 +135,9 @@ hr {
     float: right;
 }
 
-.submitted{
+.submitted {
   background-color: #777;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1em;
-  margin: 4px 2px;
-  cursor: pointer;
-  width:99%;
-  border: 2px solid #222;
+  pointer-events: none;
 }
 
 .active:after {

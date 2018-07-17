@@ -289,6 +289,11 @@ function new_question(){
       const p_mcC = document.createElement('button');
       const p_mcD = document.createElement('button');
 
+      p_mcA.setAttribute('class', 'button');
+      p_mcB.setAttribute('class', 'button');
+      p_mcC.setAttribute('class', 'button');
+      p_mcD.setAttribute('class', 'button');
+
       const d_calculator = document.createElement('div');
       d_calculator.setAttribute('class', 'd_calculator');
 
@@ -380,18 +385,22 @@ function new_question(){
       function myClickScriptD() {myClickScript("d")};
       function myClickScriptW() {myClickScript("w")};
 
+      function disablebutton(x){
+        x.disabled = true;
+        x.setAttribute('class', 'submitted');
+      }
+
       function myClickScript(mc) {
         // force answer on all inputs
         if (input_User.value === "" && mc == "w") {
           return;
         } else {      
           // lock last question
-          button_submit.disabled = true;
-          p_mcA.disabled = true;
-          p_mcB.disabled = true;
-          p_mcC.disabled = true;
-          p_mcD.disabled = true;
-          button_submit.setAttribute('class', 'submitted');
+          disablebutton(button_submit);
+          disablebutton(p_mcA);
+          disablebutton(p_mcB);
+          disablebutton(p_mcC);
+          disablebutton(p_mcD);
           input_User.readOnly = true;    
           button_count--;  
 
@@ -444,19 +453,17 @@ function new_question(){
         timer_add = parseFloat(question.Marks)*(90-score);
 
         // Append the cards to the container element
-        container.appendChild(card);       
-
-        
+                     
         if (Core_printed == 0){
           Core_printed = 1;
-          card.appendChild(hr_bar);
-          
+          container.appendChild(hr_bar);
+          container.appendChild(card);          
           card.appendChild(p_CoreQuestion);
           if( question.CorePicture != "") {
             card.appendChild(img_question);
           };
         } else {
-          
+          container.appendChild(card);
         }
 
         card.appendChild(p_Question);
