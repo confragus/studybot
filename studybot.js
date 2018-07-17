@@ -26,7 +26,7 @@ function timer() {
                               ". Please enter your nickname:", "studybot");
     
     var score_form = document.createElement('form');
-    score_form.setAttribute('action', 'http://localhost:8000/highscores');
+    score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
     score_form.setAttribute('method', 'post');
     container.appendChild(score_form);
     var score_name = document.createElement("INPUT");
@@ -237,7 +237,7 @@ function history_score(){
   var request = new XMLHttpRequest();
 
   // Open a new connection, using the GET request on the URL endpoint
-  request.open('GET', 'http://localhost:8000/savescores', true);
+  request.open('GET', 'https://empirestreet.com.au/savescores', true);
   request.onload = function () {
     var data = JSON.parse(this.response);
 
