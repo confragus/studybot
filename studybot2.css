@@ -35,6 +35,9 @@ button {
 }
 h5 {
   margin-bottom: 0px;
+  font-weight: normal;
+  text-align: left;
+  padding-left: 1em;
 }
 h3 {
   margin: 2em;
@@ -65,7 +68,7 @@ h3 {
 }
 .nav_logo{
   margin: auto;
-  height: 20px;
+  height: 30px;
   vertical-align: middle;
 }
 #d_logo {

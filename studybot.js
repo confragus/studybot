@@ -167,9 +167,17 @@ var Core_printed = 0;
 const demo = document.getElementById('demo');
 const input_demo = document.createElement('input');
 
+const input_User_text = document.createElement('h5');
+input_User_text.innerHTML = "input:";
+
+const eval_User_text = document.createElement('h5');
+eval_User_text.innerHTML = "result:";
+
 const eval_demo = document.createElement('input');
 eval_demo.readOnly = true; 
 
+demo.appendChild(input_User_text);
+demo.appendChild(eval_User_text);
 demo.appendChild(input_demo);
 demo.appendChild(eval_demo);
 
