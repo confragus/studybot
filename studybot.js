@@ -41,7 +41,6 @@ function timer() {
     score_form.submit();
 
   } else {
-    if (stop_clock === 0){
       if (timer_count >= 0) {
           show();
           setTimeout(timer, 1000);
@@ -51,7 +50,6 @@ function timer() {
         show();
         setTimeout(timer, 1000);
       };
-    }
   }
 };
 
@@ -171,7 +169,6 @@ var card_id = 0;
 var current_qn = 0;
 var lives = 100;
 var saved_marks = [];
-var stop_clock = 0;
 var limit_questions = 0;
 var path = window.location.pathname;
 var page = path.split("/").pop();
@@ -480,7 +477,7 @@ function new_question(){
       if (question.Exclude == ""){
 
         timer_add += parseFloat(question.Marks)*(90-score);
-        p_timeadded.innerHTML = "+"+timer_add+"s = "+parseFloat(question.Marks)+"marks x ( 90 seconds - "+ score + " score )";
+        p_timeadded.innerHTML = "+"+parseFloat(question.Marks)*(90-score)+"s = "+parseFloat(question.Marks)+"marks x ( 90 seconds - "+ score + " score )";
 
         // Append the cards to the container element
                      
@@ -551,11 +548,8 @@ function new_question(){
 if (filename == "quiz.html"){
   new_question();
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-  MathJax.Hub.Queue(function(){
-  hide(document.getElementById('load_icon'));
   timer_count = 0;
   starttimer(0,3);
-});
 }
 
 
