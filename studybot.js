@@ -470,8 +470,8 @@ function new_question(){
           hide(button_submit);
         }
 
-        card.appendChild(p_id);
         card.appendChild(p_Result);
+        card.appendChild(p_id);
         card.appendChild(p_Answer);
         card.appendChild(p_Solution);
 
