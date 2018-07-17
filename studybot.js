@@ -3,6 +3,7 @@
 var showmns = document.getElementById('showmns');
 var showscs = document.getElementById('showscs');
 var d_ready = document.getElementById('d_ready');
+var s_health = document.getElementById('s_health');
 
 var timer_count = 0;
 var timer_add = 0;
@@ -12,10 +13,6 @@ function pad2(n) {
 };
 
 function show() {
-  // var s = timer_count % 60;
-  // var m = Math.floor(timer_count / 60);
-  // showmns.innerHTML = pad2(m);
-  // showscs.innerHTML = pad2(s);
   showscs.innerHTML = timer_count;
 };
 
@@ -27,15 +24,14 @@ function timer() {
     document.getElementsByClassName('button').disabled = true;
     alert("You have died. Your score is: " + score);
     hide(document.getElementById("d_time"));
-    display(document.getElementById("d_reset"));
   } else {
     if (stop_clock === 0){
       if (timer_count >= 0) {
           show();
           setTimeout(timer, 1000);
       } else {
-        health_bar(lives,lives-1);
         lives--;
+        s_health.innerHTML = lives;
         show();
         setTimeout(timer, 1000);
       };
@@ -62,42 +58,6 @@ function starttimer(mns,scs) {
   };
 
 };
-
-// Health Bar ########################################################################
-
-function health_bar(start,end) {
-  var elem = document.getElementById("myBar");   
-  var width = start;
-  var id = setInterval(frame, 30); 
-  function frame() {
-    if (width > end) {
-      width--; 
-      elem.style.width = width + '%'; 
-      elem.innerHTML = width * 1;
-    };
-    if (width < end) {
-      width++; 
-      elem.style.width = width + '%'; 
-      elem.innerHTML = width * 1;
-    };
-  }
-}
-
-// Collapsible ########################################################################
-  var coll = document.getElementsByClassName("collapsible");
-  var i;
-
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.maxHeight){
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } 
-    });
-  }
 
 // Scrolling ########################################################################
 window.smoothScroll = function(target) {
@@ -208,7 +168,6 @@ const demo = document.getElementById('demo');
 const input_demo = document.createElement('input');
 
 const eval_demo = document.createElement('input');
-eval_demo.style.backgroundColor = "#555";
 eval_demo.readOnly = true; 
 
 demo.appendChild(input_demo);
@@ -275,6 +234,9 @@ function new_question(){
       card.setAttribute('class', 'card');
 
       const p_id = document.createElement('h5');
+
+      const p_timeadded = document.createElement('h5');
+
       const p_CoreQuestion = document.createElement('p');
       const img_question = document.createElement('img');
 
@@ -297,9 +259,14 @@ function new_question(){
       const d_calculator = document.createElement('div');
       d_calculator.setAttribute('class', 'd_calculator');
 
+      const input_User_text = document.createElement('h5');
+      input_User_text.innerHTML = "input:";
+
+      const eval_User_text = document.createElement('h5');
+      eval_User_text.innerHTML = "result:";
+
       const input_User = document.createElement('input');
       const eval_User = document.createElement('input');
-      eval_User.style.backgroundColor = "#555";
       eval_User.readOnly = true;  
       
       const p_mcanswer = document.createElement('p');
@@ -312,6 +279,9 @@ function new_question(){
       const p_Answer = document.createElement('p');
 
       const p_Solution = document.createElement('p');
+
+      const p_Result = document.createElement('p');
+      p_Result.innerHTML = "";
       
       function marks(x){
         if (x === '1'){
@@ -405,8 +375,8 @@ function new_question(){
           button_count--;  
 
           // display answers
-          display(button_submit);
           display(p_id);
+          display(p_Result);
           display(p_Answer);
           display(p_Solution);
           smoothScroll(p_Solution);
@@ -416,25 +386,25 @@ function new_question(){
               round(parseFloat(eval_User.value.substring(2)),6) === round(parseFloat(question.Answer),6) ||
               mc === String(question.Answer).toLowerCase()) {
             if (timer_count < 0){
-              button_submit.innerHTML = "Correct but out of time half marks awarded! +" + 
+              p_Result.innerHTML = "Correct but out of time half marks awarded! +" + 
                                         parseFloat(question.Marks)/2 + 
                                         " Score! "
-              card.style.backgroundColor = "#355d7e";
+              card.style.backgroundColor = "#D7D8EF";
               score = score + parseFloat(question.Marks)/2;
               p_score.innerHTML = score;
             } else {
-              button_submit.innerHTML = "Correct! +" + 
+              p_Result.innerHTML = "Correct! +" + 
                                         parseFloat(question.Marks) + 
                                         " Score! ";
-              card.style.backgroundColor = "#357e7b";
+              card.style.backgroundColor = "#D8EFD7";
               score = score + parseFloat(question.Marks);
               p_score.innerHTML = score;
             }
           } else {
-            button_submit.innerHTML = "Incorrect! 35 seconds lost from timebank.";
-            card.style.backgroundColor = "#7e3538";
-            health_bar(lives,lives-35);
-            lives = lives-35;  
+            p_Result.innerHTML = "Incorrect! 35 seconds lost from timebank.";
+            card.style.backgroundColor = "#F0DADB";
+            lives = lives-35;
+            s_health.innerHTML = lives;
           };
 
           // New Question
@@ -451,13 +421,15 @@ function new_question(){
       if (question.Exclude == ""){
 
         timer_add = parseFloat(question.Marks)*(90-score);
+        p_timeadded.innerHTML = "+"+timer_add+"s = "+parseFloat(question.Marks)+"marks x ( 90 seconds - "+ score + " score )";
 
         // Append the cards to the container element
                      
         if (Core_printed == 0){
           Core_printed = 1;
           container.appendChild(hr_bar);
-          container.appendChild(card);          
+          container.appendChild(card);
+          card.appendChild(p_timeadded);          
           card.appendChild(p_CoreQuestion);
           if( question.CorePicture != "") {
             card.appendChild(img_question);
@@ -480,6 +452,8 @@ function new_question(){
 
         card.appendChild(d_calculator)
         
+        d_calculator.appendChild(input_User_text);
+        d_calculator.appendChild(eval_User_text);
         d_calculator.appendChild(input_User);
         d_calculator.appendChild(eval_User);
         
@@ -489,14 +463,16 @@ function new_question(){
         }
 
         card.appendChild(p_id);
+        card.appendChild(p_Result);
         card.appendChild(p_Answer);
         card.appendChild(p_Solution);
 
         button_count++;
-        smoothScroll(d_calculator);
+        smoothScroll(p_timeadded);
 
         // Hide answers
         hide(p_id);
+        hide(p_Result);
         hide(p_Answer);
         hide(p_Solution);
       }          
@@ -514,7 +490,6 @@ new_question();
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 MathJax.Hub.Queue(function(){
   hide(document.getElementById('load_icon'));
-  hide(document.getElementById('d_reset'));
   timer_count = 0;
   starttimer(0,3);
 });

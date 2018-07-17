@@ -170,24 +170,25 @@ hr {
 }
 .grid_nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .grid_nav > div{
   color: white;
   text-align: center;
-  font-size: 1em;
+  font-size: 0.5em;
   margin: auto;
   overflow: hidden;
+  font-weight: bold;
 }
 .nav_logo{
   margin: auto;
   height: 20px;
   vertical-align: middle;
 }
-#d_time{
-  font-size: 1.5em;
-  font-weight: bold;
+.big_nav{
+  font-size: 2em;
 }
+
 
 /*gamebar*/
 .foot_background {
@@ -210,7 +211,7 @@ hr {
 .grid_foot > div{
   color: white;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.5em;
   margin: auto;
   overflow: hidden;
 }
@@ -228,6 +229,8 @@ hr {
 .d_score {
   text-align: left;
   align-content: left;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 /*Health Bar*/
@@ -238,13 +241,8 @@ hr {
 }
 
 #myBar {
-  width: 100%;
-  height: 20px;
-  background-color: #7e3538;
-  text-align: left;
-  line-height: 20px;
-  color: white;
-  padding: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 /*body*/

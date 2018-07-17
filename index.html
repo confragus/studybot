@@ -35,7 +35,7 @@
   </script>
   <script type="text/javascript" src="https://empirestreet.com.au/MathJax-master/MathJax.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="./studybot.css">
+  <link rel="stylesheet" type="text/css" href="./studybot2.css">
 
 </head>
 <body>
@@ -44,36 +44,20 @@
 <div class="nav_background">
   <div class="d_nav">
     <div class="grid_nav">
-      <div class="d_logo">
+      <div id="d_logo">
         <img src="./owl.png" class="nav_logo"> 
         <a href="./">studybot</a>
       </div>
-      <div>
-        <div class="d_time" id="d_time">
-          <span id="showscs"></span>      
-        </div>
-        <div id = "d_reset">
-          <a href="./quiz.html">play</a>
-        </div>
+      <div class="nav_titles">time</div>
+      <div class="nav_titles">bank</div>
+      <div class="nav_titles">score</div>
+      <div class="d_time" id="d_time">
+        <span id="showscs">90</span>      
       </div>
-      
-      <div class="d_lives">
-        <div id="myProgress">
-          <div id="myBar"><span>100</span></div>
-        </div>
+      <div >
+        <span id="s_health">100</span>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- gamebar -->
-<div class="foot_background">
-  <div class="d_foot">
-    <div class="grid_foot">
-      <div>level: </div>
-      <div class="d_score"><span id="p_level">0</span></div>
-      <div>score: </div>
-      <div class="d_score"><span id="p_score">0</span></div>
+      <div><span id="p_score">0</span></div>
     </div>
   </div>
 </div>
@@ -94,7 +78,7 @@
     <p class='center'>Only NSW HSC Mathematics General 2 Quiz available for now</p>
     <button class="button" onclick="window.location.href='./quiz.html'">Start Quiz</button>
 
-    <button class="collapsible" id="b_demo" >Built-in calculator</button>
+    <h3 class="collapsible" id="b_demo" >Built-in calculator</h3>
     <div class="content">
       <p>Try it out, enter an equation in the box below such as 1+1:</p>
       <div id="demo" class="d_calculator"></div>
@@ -114,7 +98,7 @@
 
     </div>
 
-    <button class="collapsible">Rules</button>
+    <h3 class="collapsible">Rules</h3>
     <div class="content">
       <ul>
         <li>90 seconds per mark</li>
@@ -125,7 +109,7 @@
       </ul>
     </div>
 
-    <button class="collapsible">Resources</button>
+    <h3 class="collapsible">Resources</h3>
     <div class="content">
       <ul>
         <li><a href="https://www.desmos.com/scientific" target="_blank">A beautiful, free Scientific Calculator from Desmos.com.</a></li>
@@ -133,7 +117,7 @@
       </ul>
     </div>
 
-    <button class="collapsible">Subjects</button>
+    <h3 class="collapsible">Subjects</h3>
     <div class="content">
       <p>The questions contained in this quiz comes from past NSW Australia Higher School Certificate (HSC) examinations dated from 2000 to 2017.</p>
       <p>Only Mathematics General 2 questions are available for now. Please vote below for the next subject to be added.</p>
@@ -145,13 +129,13 @@
       </ul>
     </div>
 
-    <button class="collapsible">Exam Muscles</button>
+    <h3 class="collapsible">Exam Muscles</h3>
     <div class="content">
       <p>studybot is an online quiz generator that simulates exam conditions in an fun environment. The questions are based on past examination papers as these questions are most reflective of what the future questions may be.</p>
       <p>Exam technique can be developed through repetitions in the same manner as going to the gym. Each time you go work out if you aim to beat your previous best by a small amount. Overtime this develops muscle memory and technique in order to execute.</p>
     </div>
 
-    <button class="collapsible">About Us</button>
+    <h3 class="collapsible">About Us</h3>
     <div class="content">
       <p>studybot helps students develop strong examination technique through quizes based on past examination questions.</p>
       <p>Exam technique like all other skills can be developed through training. It is essential to have good exam skills to be able to translate understanding into raw marks.</p>
