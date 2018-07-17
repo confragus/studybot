@@ -479,7 +479,7 @@ function new_question(){
 
       if (question.Exclude == ""){
 
-        timer_add = parseFloat(question.Marks)*(90-score);
+        timer_add += parseFloat(question.Marks)*(90-score);
         p_timeadded.innerHTML = "+"+timer_add+"s = "+parseFloat(question.Marks)+"marks x ( 90 seconds - "+ score + " score )";
 
         // Append the cards to the container element
