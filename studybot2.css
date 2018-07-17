@@ -28,10 +28,13 @@ input, button{
   font-family: 'Roboto', sans-serif;
   font-size:1em;
   padding: 5px;
-  margin:5px;
+  margin: 5px;
+}
+input {
+  width:100%;
 }
 button {
-  width:40%;
+  border-radius: 3px;
 }
 h5 {
   margin-bottom: 0px;
@@ -98,7 +101,7 @@ h3 {
 
 }
 .container{
-  max-width: 980px;
+  max-width: 99%;
   margin: 0 auto;
 }
 .card {
