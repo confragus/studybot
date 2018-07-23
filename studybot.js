@@ -184,6 +184,8 @@ container.setAttribute('class', 'container');
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 
+document.getElementById('s_health').innerHTML = filename;
+
 if( filename != "index.html" || filename != "") {
   app.appendChild(container);
 }
@@ -562,7 +564,7 @@ function new_question(){
 
 
 //start up ###########################
-if (filename != "index.html" !! filename != ""){
+if (filename != "index.html" || filename != ""){
   new_question();
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   timer_count = 0;
