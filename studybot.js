@@ -184,7 +184,7 @@ container.setAttribute('class', 'container');
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 
-if( filename != "index.html") {
+if( filename != "index.html" || filename != "") {
   app.appendChild(container);
 }
 
@@ -205,7 +205,7 @@ if (filename == 'SelectiveVIC.html'){
 
 // Demo Section ################################################################
 
-if( filename == "index.html") {
+if( filename == "index.html" || filename == "") {
   const demo = document.getElementById('demo');
   const input_demo = document.createElement('input');
 
@@ -562,7 +562,7 @@ function new_question(){
 
 
 //start up ###########################
-if (filename != "index.html"){
+if (filename != "index.html" !! filename != ""){
   new_question();
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   timer_count = 0;
