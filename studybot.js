@@ -191,13 +191,13 @@ if( filename == "quiz.html") {
 var subjectlink = '';
 
 if (filename == 'quiz.html'){
-  subjectlink = 'https://empirestreet.com.au/questionlist';
+  subjectlink = 'https://empirestreet.com.au/MG2list';
 } 
 if (filename == 'MG2.html'){
   subjectlink = 'https://empirestreet.com.au/MG2list';
 } 
 if (filename == 'SelectiveNSW.html'){
-  subjectlink = 'https://empirestreet.com.au/SelectiveNSWlist';
+  subjectlink = 'https://empirestreet.com.au/questionlist';
 } 
 if (filename == 'SelectiveVIC.html'){
   subjectlink = 'https://empirestreet.com.au/SelectiveVIClist';
