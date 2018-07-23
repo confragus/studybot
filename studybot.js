@@ -40,6 +40,8 @@ function timer() {
     score_form.appendChild(score_this);
     score_form.submit();
 
+    hide(score_form);
+
   } else {
       if (timer_count >= 0) {
           show();
@@ -91,7 +93,7 @@ window.smoothScroll = function(target) {
     scroll = function(c, a, b, i) {
         i++; if (i > 30) return;
         c.scrollTop = a + (b - a) / 30 * i;
-        setTimeout(function(){ scroll(c, a, b, i); }, 20);
+        setTimeout(function(){ scroll(c, a, b, i); }, 40);
     }
     // start scrolling
     scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
