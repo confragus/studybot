@@ -174,6 +174,7 @@ var path = window.location.pathname;
 var page = path.split("/").pop();
 var button_count = 0;
 var Core_printed = 0;
+var marks_seconds = 0;
 
 const app = document.getElementById('root');
 const p_score = document.getElementById('p_score');
@@ -493,8 +494,18 @@ function new_question(){
 
       if (question.Exclude == ""){
 
-        timer_add += parseFloat(question.Marks)*(90-score);
-        p_timeadded.innerHTML = "+"+parseFloat(question.Marks)*(90-score)+"s = "+parseFloat(question.Marks)+"marks x ( 90 seconds - "+ score + " score )";
+        if (question.Syllabus = "Reading"){
+          marks_seconds = (45/40)*60; 
+        } else if (question.Syllabus = "Mathematics"){
+          marks_seconds = (40/40)*60; 
+        } else {
+          marks_seconds = 90;
+        }
+
+        timer_add += parseFloat(question.Marks)*(marks_seconds-score);
+        p_timeadded.innerHTML = "+"+parseFloat(question.Marks)*(marks_seconds-score)+
+                                "s = "+parseFloat(question.Marks)+"marks x ( " + 
+                                marks_seconds +" seconds - "+ score + " score )";
 
         // Append the cards to the container element
                      
