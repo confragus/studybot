@@ -33,7 +33,11 @@ input, button{
 button{
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #D8EFD7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #78c875;
+  color: white;
+  border: none;
 }
 input {
   width:100%;
