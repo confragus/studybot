@@ -494,10 +494,12 @@ function new_question(){
 
       if (question.Exclude == ""){
 
-        if (question.Syllabus = "Reading"){
-          marks_seconds = (45/40)*60; 
-        } else if (question.Syllabus = "Mathematics"){
+        if (question.Syllabus == "Reading"){
+          marks_seconds = (40/45)*60; 
+        } else if (question.Syllabus == "Mathematics"){
           marks_seconds = (40/40)*60; 
+        } else if (question.Syllabus == "General Ability"){
+          marks_seconds = (40/60)*60; 
         } else {
           marks_seconds = 90;
         }
