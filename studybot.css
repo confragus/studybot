@@ -33,6 +33,7 @@ input, button{
 button{
   padding-left: 20px;
   padding-right: 20px;
+  background-color: #D8EFD7;
 }
 input {
   width:100%;
@@ -47,7 +48,7 @@ h5 {
   padding-left: 1em;
 }
 h3 {
-  margin: 2em;
+  margin: 3em;
 }
 
 /*navigation*/
