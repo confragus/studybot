@@ -188,6 +188,21 @@ if( filename == "quiz.html") {
   app.appendChild(container);
 }
 
+var subjectlink = '';
+
+if (filename == 'quiz.html'){
+  subjectlink = 'https://empirestreet.com.au/questionlist';
+} 
+if (filename == 'MG2.html'){
+  subjectlink = 'https://empirestreet.com.au/MG2list';
+} 
+if (filename == 'SelectiveNSW.html'){
+  subjectlink = 'https://empirestreet.com.au/SelectiveNSWlist';
+} 
+if (filename == 'SelectiveVIC.html'){
+  subjectlink = 'https://empirestreet.com.au/SelectiveVIClist';
+} 
+
 // Demo Section ################################################################
 
 if( filename == "index.html") {
@@ -275,7 +290,8 @@ function new_question(){
   var request = new XMLHttpRequest();
 
   // Open a new connection, using the GET request on the URL endpoint
-  request.open('GET', 'https://empirestreet.com.au/questionlist', true);
+
+  request.open('GET', subjectlink, true);
   request.onload = function () {
 
     // Begin accessing JSON data here
