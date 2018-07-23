@@ -243,6 +243,7 @@ function history_score(){
     var saved_hero = "no one";
     var saved_count = 0;
     var saved_total = 0;
+    var saved_time = 0;
 
     data.forEach(prev_score => {
       parsed_prev_score = parseInt(prev_score.score_this)
