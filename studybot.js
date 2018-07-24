@@ -37,22 +37,24 @@ function timer() {
     container.appendChild(restart_button);
     smoothScroll(restart_button);
     
-    var score_form = document.createElement('form');
-    score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
-    score_form.setAttribute('method', 'post');
-    score_form.setAttribute('target', '_blank');
-    container.appendChild(score_form);
-    var score_name = document.createElement("INPUT");
-    score_name.setAttribute("value", score_report);
-    score_name.setAttribute('name', 'score_name');
-    var score_this = document.createElement("INPUT");
-    score_this.setAttribute("value", score);
-    score_this.setAttribute('name', 'score_this');
-    score_form.appendChild(score_name);
-    score_form.appendChild(score_this);
-    score_form.submit();
+    // var score_form = document.createElement('form');
+    // // score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
+    // // score_form.setAttribute('method', 'post');
+    // // score_form.setAttribute('target', '_blank');
+    // container.appendChild(score_form);
+    // var score_name = document.createElement("INPUT");
+    // score_name.setAttribute("value", score_report);
+    // score_name.setAttribute('name', 'score_name');
+    // var score_this = document.createElement("INPUT");
+    // score_this.setAttribute("value", score);
+    // score_this.setAttribute('name', 'score_this');
+    // score_form.appendChild(score_name);
+    // score_form.appendChild(score_this);
+    // score_form.submit(function(evt){
+    //    evt.preventDefault();
+    // });
 
-    hide(score_form);
+    // hide(score_form);
 
   } else {
       if (timer_count >= 0) {
