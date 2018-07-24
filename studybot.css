@@ -36,10 +36,13 @@ button{
   padding-top: 12px;
   padding-bottom: 12px;
   margin: 15px;
-  background-color: #357e7b;
+  background-color: #6bc267;
   color: white;
   border: none;
   font-weight: 400;
+}
+button:hover {
+  background-color: #357e7b;
 }
 input {
   width:100%;
