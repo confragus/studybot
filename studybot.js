@@ -16,6 +16,11 @@ function show() {
   showscs.innerHTML = timer_count;
 };
 
+
+function restart_script(){
+  location.reload();
+}
+
 function timer() {
   timer_count--;
   timer_count += timer_add;
@@ -24,6 +29,13 @@ function timer() {
     document.getElementsByClassName('button').disabled = true;
     var score_report = prompt("You have died. Your score is " + score + 
                               ". Please enter your nickname:", "studybot");
+
+    var restart_button = document.createElement('button');
+    restart_button.setAttribute('class', 'button');
+    restart_button.textContent = 'restart';
+    restart_button.addEventListener("click", restart_script);
+    container.appendChild(restart_button);
+    smoothScroll(restart_button);
     
     var score_form = document.createElement('form');
     score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
