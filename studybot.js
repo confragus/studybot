@@ -459,6 +459,16 @@ function new_question(){
           disablebutton(p_mcB);
           disablebutton(p_mcC);
           disablebutton(p_mcD);
+          if (mc=="a"){
+            p_mcA.style.backgroundColor = '#357e7b';
+          } else if (mc=="b"){
+            p_mcB.style.backgroundColor = '#357e7b';
+          } else if (mc=="c"){
+            p_mcC.style.backgroundColor = '#357e7b';
+          } else if (mc=="d"){
+            p_mcD.style.backgroundColor = '#357e7b';
+          }
+
           input_User.readOnly = true;    
           button_count--;  
 
