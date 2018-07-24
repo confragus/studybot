@@ -27,8 +27,10 @@ function timer() {
   timer_add = 0;
   if (lives <= 0){
     document.getElementsByClassName('button').disabled = true;
-    var score_report = prompt("You have died. Your score is " + score + 
-                              ". Please enter your nickname:", "studybot");
+    // var score_report = prompt("You have died. Your score is " + score + 
+    //                           ". Please enter your nickname:", "studybot");
+
+    var score_report = alert("You have died. Your score is " + score +".");
 
     var restart_button = document.createElement('button');
     restart_button.setAttribute('class', 'button');
@@ -180,7 +182,7 @@ function perm(a,b) {return permutations(a, b);}
 var score = 0;
 var maxscore = 0;
 var accuracy = 0;
-var imgv = "?0.2";
+var imgv = "";
 var card_id = 0;
 var current_qn = 0;
 var lives = 3;
@@ -262,42 +264,42 @@ if( filename == "index.html" || filename == "") {
 
 // Historical Score section ################################################################
 
-function history_score(){
-  // Create a request variable and assign a new XMLHttpRequest object to it.
-  var request = new XMLHttpRequest();
+// function history_score(){
+//   // Create a request variable and assign a new XMLHttpRequest object to it.
+//   var request = new XMLHttpRequest();
 
-  // Open a new connection, using the GET request on the URL endpoint
-  request.open('GET', 'https://empirestreet.com.au/savescores', true);
-  request.onload = function () {
-    var data = JSON.parse(this.response);
+//   // Open a new connection, using the GET request on the URL endpoint
+//   request.open('GET', 'https://empirestreet.com.au/savescores', true);
+//   request.onload = function () {
+//     var data = JSON.parse(this.response);
 
-    var saved_score = -1;
-    var saved_hero = "no one";
-    var saved_count = 0;
-    var saved_total = 0;
-    var saved_time = 0;
+//     var saved_score = -1;
+//     var saved_hero = "no one";
+//     var saved_count = 0;
+//     var saved_total = 0;
+//     var saved_time = 0;
 
-    data.forEach(prev_score => {
-      parsed_prev_score = parseInt(prev_score.score_this)
-      saved_count++;
-      saved_total = saved_total + parsed_prev_score;
-      if (parsed_prev_score > saved_score){
-        saved_score = parsed_prev_score;
-        saved_hero = prev_score.nickname;
-        saved_time = prev_score.time;
-      } 
-    })
+//     data.forEach(prev_score => {
+//       parsed_prev_score = parseInt(prev_score.score_this)
+//       saved_count++;
+//       saved_total = saved_total + parsed_prev_score;
+//       if (parsed_prev_score > saved_score){
+//         saved_score = parsed_prev_score;
+//         saved_hero = prev_score.nickname;
+//         saved_time = prev_score.time;
+//       } 
+//     })
 
-    var p_save_score = document.getElementById('p_save_score');
-    var p_average_score = document.getElementById('p_average_score');
-    p_save_score.innerHTML = "High score of " + saved_score + " by " + saved_hero + " on " + saved_time.substring(0,10);
-    p_average_score.innerHTML = "Average score of " + saved_total / saved_count;
-  }
-  request.send();
-}
-history_score();
-hide(p_save_score);
-hide(p_average_score);
+//     var p_save_score = document.getElementById('p_save_score');
+//     var p_average_score = document.getElementById('p_average_score');
+//     p_save_score.innerHTML = "High score of " + saved_score + " by " + saved_hero + " on " + saved_time.substring(0,10);
+//     p_average_score.innerHTML = "Average score of " + saved_total / saved_count;
+//   }
+//   request.send();
+// }
+// history_score();
+// hide(p_save_score);
+// hide(p_average_score);
 
 // Question Section ################################################################
 
@@ -479,7 +481,7 @@ function new_question(){
           display(p_Result);
           display(p_Answer);
           display(p_Solution);
-          smoothScroll(p_Solution);
+          // smoothScroll(p_Solution);
 
           if (input_User.value.toLowerCase() === String(question.Answer).toLowerCase() || 
               round(parseFloat(input_User.value),6) === round(parseFloat(question.Answer),6) ||
@@ -538,7 +540,6 @@ function new_question(){
         // Append the cards to the container element
                      
         if (Core_printed == 0){
-          Core_printed = 1;
           container.appendChild(hr_bar);
           container.appendChild(card);
           card.appendChild(p_timeadded);          
@@ -581,7 +582,11 @@ function new_question(){
         card.appendChild(p_Solution);
 
         button_count++;
-        smoothScroll(p_timeadded);
+
+        // // if (Core_printed == 0){
+        // //   Core_printed = 1;
+        //   // smoothScroll(p_Solution);
+        // }
 
         // Hide answers
         hide(p_id);
