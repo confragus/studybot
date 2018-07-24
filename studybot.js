@@ -60,7 +60,7 @@ function timer() {
           setTimeout(timer, 1000);
       } else {
         lives = lives - 1/100;
-        s_health.innerHTML = lives;
+        s_health.innerHTML = round(lives,2);
         show();
         setTimeout(timer, 1000);
       };
@@ -502,7 +502,7 @@ function new_question(){
             p_Result.innerHTML = "Incorrect! 35 seconds lost from timebank.";
             card.style.backgroundColor = "#F0DADB";
             lives = lives-1;
-            s_health.innerHTML = lives;
+            s_health.innerHTML = round(lives,2);
           };
 
           // New Question
