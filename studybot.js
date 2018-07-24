@@ -59,7 +59,7 @@ function timer() {
           show();
           setTimeout(timer, 1000);
       } else {
-        lives--;
+        lives = lives - 1/100;
         s_health.innerHTML = lives;
         show();
         setTimeout(timer, 1000);
@@ -181,7 +181,7 @@ var accuracy = 0;
 var imgv = "?0.2";
 var card_id = 0;
 var current_qn = 0;
-var lives = 100;
+var lives = 3;
 var saved_marks = [];
 var limit_questions = 0;
 var path = window.location.pathname;
@@ -501,7 +501,7 @@ function new_question(){
           } else {
             p_Result.innerHTML = "Incorrect! 35 seconds lost from timebank.";
             card.style.backgroundColor = "#F0DADB";
-            lives = lives-35;
+            lives = lives-1;
             s_health.innerHTML = lives;
           };
 
