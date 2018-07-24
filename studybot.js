@@ -227,7 +227,7 @@ if( filename == "index.html" || filename == "") {
   const input_demo = document.createElement('input');
 
   const input_User_text = document.createElement('h5');
-  input_User_text.innerHTML = "input:";
+  input_User_text.innerHTML = "calculator:";
 
   const eval_User_text = document.createElement('h5');
   eval_User_text.innerHTML = "result:";
@@ -350,7 +350,7 @@ function new_question(){
       d_calculator.setAttribute('class', 'd_calculator');
 
       const input_User_text = document.createElement('h5');
-      input_User_text.innerHTML = "input:";
+      input_User_text.innerHTML = "calculator:";
 
       const eval_User_text = document.createElement('h5');
       eval_User_text.innerHTML = "result:";
@@ -370,7 +370,7 @@ function new_question(){
 
       const p_Solution = document.createElement('p');
 
-      const p_Result = document.createElement('p');
+      const p_Result = document.createElement('h3');
       p_Result.innerHTML = "";
       
       function marks(x){
@@ -416,7 +416,7 @@ function new_question(){
 
       //button
       button_submit.addEventListener("click", myClickScriptW);
-      button_submit.textContent = "submit";
+      button_submit.textContent = "submit calculator";
 
       //Javascript parsing
       input_User.addEventListener("keyup", function(event) {
@@ -501,7 +501,7 @@ function new_question(){
               p_score.innerHTML = score;
             }
           } else {
-            p_Result.innerHTML = "Incorrect! 35 seconds lost from timebank.";
+            p_Result.innerHTML = "Incorrect! Lost a life!";
             card.style.backgroundColor = "#F0DADB";
             lives = lives-1;
             s_health.innerHTML = round(lives,2);
