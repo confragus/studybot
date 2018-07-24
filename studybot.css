@@ -24,20 +24,22 @@ p {
 li {
   text-align: left;
 }
-input, button{
-  font-family: 'Roboto', sans-serif;
+input{
   font-size:1em;
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
 }
 button{
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #78c875;
+  font-size:1em;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 15px;
+  background-color: #357e7b;
   color: white;
   border: none;
+  font-weight: 400;
 }
 input {
   width:100%;
