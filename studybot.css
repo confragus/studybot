@@ -11,7 +11,7 @@ a {
 img {
   margin: 0rem auto;
   max-width: 90%;
-  max-height: 30em;
+  max-height: 50em;
   filter: invert(4%);
 }
 p {
