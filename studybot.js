@@ -342,11 +342,13 @@ function new_question(){
       const p_mcB = document.createElement('button');
       const p_mcC = document.createElement('button');
       const p_mcD = document.createElement('button');
+      const p_mcE = document.createElement('button');
 
       p_mcA.setAttribute('class', 'button');
       p_mcB.setAttribute('class', 'button');
       p_mcC.setAttribute('class', 'button');
       p_mcD.setAttribute('class', 'button');
+      p_mcE.setAttribute('class', 'button');
 
       const d_calculator = document.createElement('div');
       d_calculator.setAttribute('class', 'd_calculator');
@@ -385,16 +387,27 @@ function new_question(){
 
       //multiple choice questions
       if (question.A != "") {
-        p_mcA.textContent = "A) " + question.A;
-        p_mcB.textContent = "B) " + question.B;
-        p_mcC.textContent = "C) " + question.C;
-        p_mcD.textContent = "D) " + question.D;
+        if (question.A.toLowerCase() != "a"){
+          p_mcA.textContent = "A) " + question.A;
+          p_mcB.textContent = "B) " + question.B;
+          p_mcC.textContent = "C) " + question.C;
+          p_mcD.textContent = "D) " + question.D;
+          p_mcE.textContent = "E) " + question.E;
+        } else {
+          p_mcA.textContent = "A";
+          p_mcB.textContent = "B";
+          p_mcC.textContent = "C";
+          p_mcD.textContent = "D";
+          p_mcE.textContent = "E";
+        }
+          
       }
       
       p_mcA.addEventListener("click", myClickScriptA);
       p_mcB.addEventListener("click", myClickScriptB);
       p_mcC.addEventListener("click", myClickScriptC);
       p_mcD.addEventListener("click", myClickScriptD);
+      p_mcE.addEventListener("click", myClickScriptE);
 
       //tag
       p_id.textContent = question.Subject + "-" + question.Year + " Q-"
@@ -445,6 +458,7 @@ function new_question(){
       function myClickScriptB() {myClickScript("b")};
       function myClickScriptC() {myClickScript("c")};
       function myClickScriptD() {myClickScript("d")};
+      function myClickScriptE() {myClickScript("e")};
       function myClickScriptW() {myClickScript("w")};
 
       function disablebutton(x){
@@ -463,6 +477,7 @@ function new_question(){
           disablebutton(p_mcB);
           disablebutton(p_mcC);
           disablebutton(p_mcD);
+          disablebutton(p_mcE);
           if (mc=="a"){
             p_mcA.style.backgroundColor = '#357e7b';
           } else if (mc=="b"){
@@ -471,6 +486,8 @@ function new_question(){
             p_mcC.style.backgroundColor = '#357e7b';
           } else if (mc=="d"){
             p_mcD.style.backgroundColor = '#357e7b';
+          } else if (mc=="e"){
+            p_mcE.style.backgroundColor = '#357e7b';
           }
 
           input_User.readOnly = true;    
@@ -562,6 +579,9 @@ function new_question(){
           card.appendChild(p_mcB);
           card.appendChild(p_mcC);
           card.appendChild(p_mcD);
+        }
+        if( question.E != "") {
+          card.appendChild(p_mcE);
         }
 
         card.appendChild(d_calculator)

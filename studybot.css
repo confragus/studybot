@@ -60,6 +60,10 @@ h3 {
   margin: 3em;
 }
 
+.bigger_nav {
+  font-size:1.5em;
+}
+
 /*navigation*/
 .d_top_padding {
   padding:2em;
