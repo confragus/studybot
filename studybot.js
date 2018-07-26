@@ -13,7 +13,7 @@ function pad2(n) {
 };
 
 function show() {
-  showscs.innerHTML = timer_count;
+  showscs.innerHTML = round(timer_count,0);
 };
 
 
