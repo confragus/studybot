@@ -514,7 +514,8 @@ function new_question(){
             } else {
               p_Result.innerHTML = "Correct! +" + 
                                         parseFloat(question.Marks) + 
-                                        " Score! ";
+                                        " Score! +0.1 Life!";
+              lives = lives + 0.1;
               card.style.backgroundColor = "#D8EFD7";
               score = score + parseFloat(question.Marks);
               p_score.innerHTML = score;
