@@ -557,19 +557,13 @@ function new_question(){
 
         // Append the cards to the container element
                      
-        if (Core_printed == 0){
-          Core_printed = 1;
-          container.appendChild(hr_bar);
-          container.appendChild(card);
-          card.appendChild(p_timeadded);          
-          card.appendChild(p_CoreQuestion);
-          if( question.CorePicture != "") {
-            card.appendChild(img_question);
-          };
-        } else {
-          container.appendChild(card);
-          card.appendChild(p_timeadded); 
-        }
+        container.appendChild(hr_bar);
+        container.appendChild(card);
+        card.appendChild(p_timeadded);          
+        card.appendChild(p_CoreQuestion);
+        if( question.CorePicture != "") {
+          card.appendChild(img_question);
+        };
 
         card.appendChild(p_Question);
         if( question.Picture != "") {
