@@ -548,6 +548,7 @@ function new_question(){
         } else {
           marks_seconds = 90;
         }
+        marks_seconds = round(marks_seconds,0);
 
         timer_add += parseFloat(question.Marks)*(marks_seconds-score);
         p_timeadded.innerHTML = "+"+parseFloat(question.Marks)*(marks_seconds-score)+
