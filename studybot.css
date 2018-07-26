@@ -28,6 +28,7 @@ input{
   font-size:1em;
   padding: 5px;
   margin: 10px;
+  width:100%;
 }
 button{
   font-size:1em;
@@ -43,9 +44,6 @@ button{
 }
 button:hover {
   background-color: #357e7b;
-}
-input {
-  width:100%;
 }
 button {
   border-radius: 3px;
@@ -131,7 +129,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 0 auto;
-  width: 99%;
+  width: 100%;
   max-width: 500px;
 }
 .calc_labels {
