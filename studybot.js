@@ -558,6 +558,7 @@ function new_question(){
         // Append the cards to the container element
                      
         if (Core_printed == 0){
+          Core_printed = 1;
           container.appendChild(hr_bar);
           container.appendChild(card);
           card.appendChild(p_timeadded);          
@@ -603,11 +604,6 @@ function new_question(){
         card.appendChild(p_Solution);
 
         button_count++;
-
-        // // if (Core_printed == 0){
-        // //   Core_printed = 1;
-        //   // smoothScroll(p_Solution);
-        // }
 
         // Hide answers
         hide(p_id);
