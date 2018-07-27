@@ -39,6 +39,7 @@ function timer() {
     
     var score_form = document.createElement('form');
     score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
+    // score_form.setAttribute('action', 'http://localhost:8000/highscores');
     score_form.setAttribute('method', 'post');
     score_form.setAttribute('target', 'dummyframe');
     container.appendChild(score_form);
