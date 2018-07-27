@@ -99,7 +99,7 @@ score_storage = {};
 function get_highscores(){
 
   var top_ten_list = document.createElement('h2')
-  top_ten_list.innerHTML = 'Top ten list:'; 
+  top_ten_list.innerHTML = 'High Scores'; 
   container.appendChild(top_ten_list);
 
   top_ten = 0;
@@ -126,7 +126,7 @@ function get_highscores(){
     container.appendChild(top_ten_div);
 
     data.forEach(got_score => {
-        if(top_ten <10){
+        if(top_ten <5){
           top_ten++;
           const table_titles = document.createElement('div');
           top_ten_div.appendChild(table_titles);
