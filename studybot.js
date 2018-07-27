@@ -27,10 +27,10 @@ function timer() {
   timer_add = 0;
   if (lives <= 0){
     document.getElementsByClassName('button').disabled = true;
-    // var score_report = prompt("You have died. Your score is " + score + 
-    //                           ". Please enter your nickname:", "studybot");
+    var score_report = prompt("You have died. Your score is " + score + 
+                              ". Please enter your nickname:", "studybot");
 
-    var score_report = alert("You have died. Your score is " + score +".");
+    // var score_report = alert("You have died. Your score is " + score +".");
 
     var restart_button = document.createElement('button');
     restart_button.setAttribute('class', 'button');
@@ -39,24 +39,33 @@ function timer() {
     container.appendChild(restart_button);
     smoothScroll(restart_button);
     
-    // var score_form = document.createElement('form');
-    // // score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
-    // // score_form.setAttribute('method', 'post');
-    // // score_form.setAttribute('target', '_blank');
-    // container.appendChild(score_form);
-    // var score_name = document.createElement("INPUT");
-    // score_name.setAttribute("value", score_report);
-    // score_name.setAttribute('name', 'score_name');
-    // var score_this = document.createElement("INPUT");
-    // score_this.setAttribute("value", score);
-    // score_this.setAttribute('name', 'score_this');
-    // score_form.appendChild(score_name);
-    // score_form.appendChild(score_this);
-    // score_form.submit(function(evt){
-    //    evt.preventDefault();
-    // });
+    var score_form = document.createElement('form');
+    score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
+    // score_form.setAttribute('action', 'http://localhost:8000/highscores');
+    score_form.setAttribute('method', 'post');
+    score_form.setAttribute('target', 'dummyframe');
+    container.appendChild(score_form);
 
-    // hide(score_form);
+    var score_name = document.createElement("INPUT");
+    score_name.setAttribute("value", score_report);
+    score_name.setAttribute('name', 'score_name');
+
+    var score_recorded = document.createElement("INPUT");
+    score_recorded.setAttribute("value", score);
+    score_recorded.setAttribute('name', 'score_recorded');
+
+    var quiz_type = document.createElement("INPUT");
+    quiz_type.setAttribute("value", filename);
+    quiz_type.setAttribute('name', 'quiz_type');
+
+    score_form.appendChild(score_name);
+    score_form.appendChild(score_recorded);
+    score_form.appendChild(quiz_type);
+    score_form.submit(function(evt){
+       evt.preventDefault();
+    });
+
+    hide(score_form);
 
   } else {
       if (timer_count >= 0) {
@@ -196,7 +205,6 @@ var marks_seconds = 0;
 
 const app = document.getElementById('root');
 const p_score = document.getElementById('p_score');
-const p_level = document.getElementById('p_level');
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
@@ -534,7 +542,6 @@ function new_question(){
             timer_count = 1;
             new_question();
             level = Math.floor(score/5);
-            p_level.innerHTML = level;
            };
         };
       };
