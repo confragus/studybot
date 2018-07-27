@@ -518,8 +518,8 @@ function new_question(){
         marks_seconds = round(marks_seconds,0);
 
         timer_add += parseFloat(question.Marks)*(marks_seconds-score);
-        p_timeadded.innerHTML = "+"+parseFloat(question.Marks)*(marks_seconds-score)+
-                                "s = "+parseFloat(question.Marks)+"marks x ( " + 
+        p_timeadded.innerHTML = ""+parseFloat(question.Marks)*(marks_seconds-score)+
+                                "seconds added to the clock = "+parseFloat(question.Marks)+"marks x ( " + 
                                 marks_seconds +" seconds - "+ score + " score )";
 
         // Append the cards to the container element
