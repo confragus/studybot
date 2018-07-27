@@ -88,7 +88,6 @@ function submit_score(){
   restart_button.textContent = 'restart';
   restart_button.addEventListener("click", restart_script);
   container.appendChild(restart_button);
-  smoothScroll(restart_button);
 }
 
 
