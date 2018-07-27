@@ -1,3 +1,157 @@
+// submit score ################################################
+
+function submit_score(){
+  var score_report = prompt("You have died. Your score is " + score + 
+                            ". Please enter your nickname:", "studybot");
+  
+  var score_form = document.createElement('form');
+  score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
+  score_form.setAttribute('method', 'post');
+  score_form.setAttribute('target', 'dummyframe');
+  container.appendChild(score_form);
+
+  var score_name = document.createElement("INPUT");
+  score_name.setAttribute("id", score_name);
+  score_name.setAttribute("value", score_report);
+  score_name.setAttribute('name', 'score_name');
+
+  var score_recorded = document.createElement("INPUT");
+  score_recorded.setAttribute("value", score);
+  score_recorded.setAttribute('name', 'score_recorded');
+
+  var quiz_type = document.createElement("INPUT");
+  quiz_type.setAttribute("value", filename);
+  quiz_type.setAttribute('name', 'quiz_type');
+
+  score_form.appendChild(score_name);
+  score_form.appendChild(score_recorded);
+  score_form.appendChild(quiz_type);
+  score_form.submit(function(evt){
+     evt.preventDefault();
+  });
+
+  hide(score_form);
+
+  rank = 1;
+  total_got_score = 0;
+
+  score_storage.forEach(got_score=> {
+    if (score <= got_score.score){
+      rank++;
+    }
+    total_got_score++;
+  })
+
+  const finish_header = document.createElement('h1');
+  finish_header.innerHTML = score_report + ' records posted'; 
+  container.appendChild(finish_header);
+
+  const close_board_div = document.createElement('div');
+  close_board_div.setAttribute('class', 'd_calculator');
+  container.appendChild(close_board_div);
+
+  var your_score_title = document.createElement('div')
+  close_board_div.appendChild(your_score_title);
+
+  var score_title = document.createElement('p')
+  score_title.setAttribute('class', 'center');
+  score_title.innerHTML = 'score'; 
+  your_score_title.appendChild(score_title);
+
+  var your_score_value = document.createElement('div')
+  close_board_div.appendChild(your_score_value);
+
+  var h1_score = document.createElement('p')
+  h1_score.setAttribute('class', 'center');
+  h1_score.innerHTML = score; 
+  your_score_value.appendChild(h1_score);
+
+  var your_rank_title = document.createElement('div')
+  close_board_div.appendChild(your_rank_title);
+
+  var rank_title = document.createElement('p')
+  rank_title.setAttribute('class', 'center');
+  rank_title.innerHTML = 'rank'; 
+  your_rank_title.appendChild(rank_title);
+
+  var your_rank_value = document.createElement('div')
+  close_board_div.appendChild(your_rank_value);
+
+  var h1_rank = document.createElement('p')
+  h1_rank.setAttribute('class', 'center');
+  h1_rank.innerHTML = Math.max((100 - round(rank/total_got_score*100,0)),0) + "%"; 
+  your_rank_value.appendChild(h1_rank);
+
+
+  var restart_button = document.createElement('button');
+  restart_button.setAttribute('class', 'button');
+  restart_button.textContent = 'restart';
+  restart_button.addEventListener("click", restart_script);
+  container.appendChild(restart_button);
+  smoothScroll(restart_button);
+}
+
+
+// get high scores ########################################################################
+
+score_storage = {};
+
+function get_highscores(){
+
+  var top_ten_list = document.createElement('h2')
+  top_ten_list.innerHTML = 'Top ten list:'; 
+  container.appendChild(top_ten_list);
+
+  top_ten = 0;
+
+  // Create a request variable and assign a new XMLHttpRequest object to it.
+  var request = new XMLHttpRequest();
+
+  // Open a new connection, using the GET request on the URL endpoint
+
+  request.open('GET', 'https://empirestreet.com.au/savescores', true);
+  request.onload = function () {
+
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response);
+
+    data.sort(function(b, a){
+      return a.score - b.score;
+    });
+
+    score_storage = data;
+
+    const top_ten_div = document.createElement('div');
+    top_ten_div.setAttribute('class', 'd_calculator');
+    container.appendChild(top_ten_div);
+
+    data.forEach(got_score => {
+        if(top_ten <10){
+          top_ten++;
+          const table_titles = document.createElement('div');
+          top_ten_div.appendChild(table_titles);
+
+          var h_names = document.createElement('p')
+          h_names.setAttribute('class', 'center');
+          h_names.innerHTML = got_score.name; 
+          table_titles.appendChild(h_names);
+
+          const table_values = document.createElement('div');
+          top_ten_div.appendChild(table_values);
+
+          var h_score = document.createElement('p')
+          h_score.setAttribute('class', 'center');
+          h_score.innerHTML = got_score.score;
+          table_values.appendChild(h_score); 
+        }
+        
+    })
+  }
+  request.send();
+}
+
+
+
 // Timer ########################################################################
 
 var showmns = document.getElementById('showmns');
@@ -27,44 +181,7 @@ function timer() {
   timer_add = 0;
   if (lives <= 0){
     document.getElementsByClassName('button').disabled = true;
-    var score_report = prompt("You have died. Your score is " + score + 
-                              ". Please enter your nickname:", "studybot");
-
-    var restart_button = document.createElement('button');
-    restart_button.setAttribute('class', 'button');
-    restart_button.textContent = 'restart';
-    restart_button.addEventListener("click", restart_script);
-    container.appendChild(restart_button);
-    smoothScroll(restart_button);
-    
-    var score_form = document.createElement('form');
-    score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
-    // score_form.setAttribute('action', 'http://localhost:8000/highscores');
-    score_form.setAttribute('method', 'post');
-    score_form.setAttribute('target', 'dummyframe');
-    container.appendChild(score_form);
-
-    var score_name = document.createElement("INPUT");
-    score_name.setAttribute("value", score_report);
-    score_name.setAttribute('name', 'score_name');
-
-    var score_recorded = document.createElement("INPUT");
-    score_recorded.setAttribute("value", score);
-    score_recorded.setAttribute('name', 'score_recorded');
-
-    var quiz_type = document.createElement("INPUT");
-    quiz_type.setAttribute("value", filename);
-    quiz_type.setAttribute('name', 'quiz_type');
-
-    score_form.appendChild(score_name);
-    score_form.appendChild(score_recorded);
-    score_form.appendChild(quiz_type);
-    score_form.submit(function(evt){
-       evt.preventDefault();
-    });
-
-    hide(score_form);
-
+    submit_score();
   } else {
       if (timer_count >= 0) {
           show();
@@ -586,6 +703,7 @@ function new_question(){
 
 //start up ###########################
 if ((filename == "index.html" || filename == "") == false) {
+  get_highscores();
   new_question();
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   timer_count = 0;

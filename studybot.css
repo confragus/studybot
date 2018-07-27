@@ -132,6 +132,11 @@ h3 {
   width: 100%;
   max-width: 500px;
 }
+.d_calculator > div{
+  border: 0.1px solid white;
+  font-weight: bold;
+  background-color: #ececec;
+}
 .calc_labels {
   line-height: 0em;
   font: 0.7em;
