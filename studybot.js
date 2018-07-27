@@ -574,6 +574,8 @@ function new_question(){
             p_mcE.style.backgroundColor = '#357e7b';
           }
 
+          button_submit.style.backgroundColor = '#357e7b';
+
           input_User.readOnly = true;    
           button_count--;  
 
