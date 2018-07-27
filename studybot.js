@@ -30,8 +30,6 @@ function timer() {
     var score_report = prompt("You have died. Your score is " + score + 
                               ". Please enter your nickname:", "studybot");
 
-    // var score_report = alert("You have died. Your score is " + score +".");
-
     var restart_button = document.createElement('button');
     restart_button.setAttribute('class', 'button');
     restart_button.textContent = 'restart';
@@ -41,7 +39,6 @@ function timer() {
     
     var score_form = document.createElement('form');
     score_form.setAttribute('action', 'https://empirestreet.com.au/highscores');
-    // score_form.setAttribute('action', 'http://localhost:8000/highscores');
     score_form.setAttribute('method', 'post');
     score_form.setAttribute('target', 'dummyframe');
     container.appendChild(score_form);
@@ -269,45 +266,6 @@ if( filename == "index.html" || filename == "") {
     }
   });
 }
-
-// Historical Score section ################################################################
-
-// function history_score(){
-//   // Create a request variable and assign a new XMLHttpRequest object to it.
-//   var request = new XMLHttpRequest();
-
-//   // Open a new connection, using the GET request on the URL endpoint
-//   request.open('GET', 'https://empirestreet.com.au/savescores', true);
-//   request.onload = function () {
-//     var data = JSON.parse(this.response);
-
-//     var saved_score = -1;
-//     var saved_hero = "no one";
-//     var saved_count = 0;
-//     var saved_total = 0;
-//     var saved_time = 0;
-
-//     data.forEach(prev_score => {
-//       parsed_prev_score = parseInt(prev_score.score_this)
-//       saved_count++;
-//       saved_total = saved_total + parsed_prev_score;
-//       if (parsed_prev_score > saved_score){
-//         saved_score = parsed_prev_score;
-//         saved_hero = prev_score.nickname;
-//         saved_time = prev_score.time;
-//       } 
-//     })
-
-//     var p_save_score = document.getElementById('p_save_score');
-//     var p_average_score = document.getElementById('p_average_score');
-//     p_save_score.innerHTML = "High score of " + saved_score + " by " + saved_hero + " on " + saved_time.substring(0,10);
-//     p_average_score.innerHTML = "Average score of " + saved_total / saved_count;
-//   }
-//   request.send();
-// }
-// history_score();
-// hide(p_save_score);
-// hide(p_average_score);
 
 // Question Section ################################################################
 
