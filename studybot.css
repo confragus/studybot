@@ -132,6 +132,9 @@ h3 {
   width: 100%;
   max-width: 500px;
   margin-bottom: 1em;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+  background-color: #dfdfdf;
 }
 .d_calculator > div{
   border: 0.1px solid white;
