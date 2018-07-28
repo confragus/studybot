@@ -125,7 +125,7 @@ function get_highscores(){
     container.appendChild(top_ten_div);
 
     data.forEach(got_score => {
-        if(top_ten <5){
+        if(top_ten <5 && got_score.quiz == filename){
           top_ten++;
           const table_titles = document.createElement('div');
           top_ten_div.appendChild(table_titles);
