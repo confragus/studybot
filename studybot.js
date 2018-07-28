@@ -656,6 +656,8 @@ function new_question(){
           card.appendChild(img_q1);
         };
 
+        card.appendChild(p_Result);
+
         if( question.A != "") {
           card.appendChild(p_mcA);
           card.appendChild(p_mcB);
@@ -678,7 +680,6 @@ function new_question(){
           hide(button_submit);
         }
 
-        card.appendChild(p_Result);
         card.appendChild(p_id);
         card.appendChild(p_Answer);
         card.appendChild(p_Solution);
