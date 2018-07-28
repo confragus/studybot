@@ -42,7 +42,7 @@ function submit_score(){
     total_got_score++;
   })
 
-  const finish_header = document.createElement('h1');
+  const finish_header = document.createElement('h3');
   finish_header.innerHTML = score_report + ' records posted'; 
   container.appendChild(finish_header);
 
@@ -88,6 +88,7 @@ function submit_score(){
   restart_button.textContent = 'restart';
   restart_button.addEventListener("click", restart_script);
   container.appendChild(restart_button);
+  smoothScroll(restart_button);
 }
 
 
