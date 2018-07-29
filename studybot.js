@@ -600,9 +600,7 @@ function new_question(){
             } else {
               p_Result.innerHTML = "Correct! +" + 
                                         parseFloat(question.Marks) + 
-                                        " Score! +0.1 Life!";
-              lives = lives + 0.1;
-              s_health.innerHTML = round(lives,2);
+                                        " Score!";
               card.style.backgroundColor = "#D8EFD7";
               score = score + parseFloat(question.Marks);
               p_score.innerHTML = score;
