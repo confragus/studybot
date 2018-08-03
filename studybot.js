@@ -352,7 +352,7 @@ if( filename == "index.html" || filename == "") {
   const input_demo = document.createElement('input');
 
   const input_User_text = document.createElement('h5');
-  input_User_text.innerHTML = "input:";
+  input_User_text.innerHTML = "calculator:";
 
   const eval_User_text = document.createElement('h5');
   eval_User_text.innerHTML = "result:";
