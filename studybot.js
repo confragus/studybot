@@ -1,4 +1,4 @@
-// submit score ################################################
+// submit score ############################################s####
 
 function submit_score(){
   var score_report = prompt("You have died. Your score is " + score + 
